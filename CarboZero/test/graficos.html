@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Emissão de Carbono</title>
+    <link rel="stylesheet" href="css/calculo.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Link para Chart.js -->
+</head>
+<style>
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Layout responsivo e geral */
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2.5rem;
+}
+
+/* Estilo das caixas de conteúdo */
+.box {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+/* Explicação */
+#explanation h2 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    color: #4CAF50;
+}
+
+#explanation p {
+    margin-bottom: 10px;
+}
+
+#explanation ul {
+    margin-bottom: 10px;
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+#explanation li {
+    margin-bottom: 5px;
+}
+
+/* Formulário de cálculo */
+form label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+form select,
+form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+form button:hover {
+    background-color: #45a049;
+}
+
+/* Resultado */
+#result {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+}
+
+/* Tabela de resultados */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.table th,
+.table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+.table th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+/* Estilo do gráfico */
+#myChart {
+    margin-top: 20px;
+    max-width: 600px;
+    max-height: 400px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+    
+    #explanation h2 {
+        font-size: 1.5rem;
+    }
+}
+</style>
+<body>
+    <div class="container">
+        <h1>Calculadora de Emissão de Carbono</h1>
+        
+        <div id="explanation" class="box">
+            <h2>Como funciona?</h2>
+            <p>Esta calculadora permite que você estime a quantidade de CO2 emitida com base no consumo mensal de diferentes fontes de energia. Escolha o tipo de combustível ou energia, insira o valor correspondente ao seu consumo e obtenha uma estimativa das emissões.</p>
+            <ul>
+                <li><strong>Gasolina, Etanol, Diesel:</strong> Insira o consumo mensal em litros.</li>
+                <li><strong>Gás Natural:</strong> Insira o consumo mensal em metros cúbicos (m³).</li>
+                <li><strong>Carvão:</strong> Insira o consumo mensal em quilogramas (kg).</li>
+                <li><strong>Eletricidade:</strong> Insira o consumo mensal em kilowatt-horas (kWh).</li>
+            </ul>
+            <p>Preencha os campos com valores válidos e precisos para obter uma estimativa confiável das suas emissões de CO2.</p>
+        </div>
+
+        <form id="carbonCalculator" class="box">
+            <label for="fuelType">Tipo de Emissão:</label>
+            <select id="fuelType">
+                <option value="gasolina">Gasolina</option>
+                <option value="etanol">Etanol</option>
+                <option value="diesel">Diesel</option>
+                <option value="gasNatural">Gás Natural</option>
+                <option value="carvao">Carvão</option>
+                <option value="eletricidade">Eletricidade (Usina Térmica)</option>
+            </select>
+
+            <label for="consumption">Consumo Mensal (litros, kg ou kWh):</label>
+            <input type="number" id="consumption" placeholder="Digite o consumo mensal">
+
+            <button type="button" onclick="calculateEmissions()">Calcular Emissões</button>
+        </form>
+
+        <div id="result" class="box"></div>
+        
+        <table class="table" id="resultsTable">
+            <thead>
+                <tr>
+                    <th>Tipo de Emissão</th>
+                    <th>Emissões Mensais (ton CO2)</th>
+                    <th>Títulos de Carbono Necessários</th>
+                    <th>Valor em Reais</th>
+                    <th>Projetos de Compensação (Hectares)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Os resultados serão inseridos aqui via JavaScript -->
+            </tbody>
+        </table>
+        
+        <canvas id="myChart"></canvas> <!-- Gráfico -->
+    </div>
+
+    <script>
+    function calculateEmissions() {
+        // Fatores de emissão (em toneladas de CO2 por litro, kg ou kWh)
+        const emissionFactors = {
+            gasolina: 0.00231,      // Gasolina (toneladas por litro)
+            etanol: 0.00074,        // Etanol (toneladas por litro)
+            diesel: 0.00268,        // Diesel (toneladas por litro)
+            gasNatural: 0.00275,    // Gás Natural (toneladas por m³)
+            carvao: 0.00286,        // Carvão (toneladas por kg)
+            eletricidade: 0.00050   // Eletricidade (toneladas por kWh, baseado em usina térmica)
+        };
+    
+        // Valor do crédito de carbono inicial em reais
+        const initialCreditValue = 50; // R$ 50 por tonelada
+
+        // Obter valores do formulário
+        const fuelType = document.getElementById("fuelType").value;
+        const consumption = parseFloat(document.getElementById("consumption").value);
+    
+        // Limpar o resultado anterior
+        const resultElement = document.getElementById("result");
+        const resultsTableBody = document.getElementById("resultsTable").getElementsByTagName('tbody')[0];
+        resultsTableBody.innerHTML = "";  // Limpar tabela
+        
+        // Verificar se o tipo de emissão foi selecionado
+        if (!fuelType) {
+            resultElement.textContent = "Por favor, selecione um tipo de emissão.";
+            return;
+        }
+    
+        // Verificar se o valor de consumo é válido
+        if (isNaN(consumption) || consumption <= 0) {
+            resultElement.textContent = "Por favor, insira um valor válido para o consumo.";
+            return;
+        }
+    
+        // Calcular emissões
+        const monthlyEmissions = consumption * emissionFactors[fuelType];
+        const carbonCreditsMonthly = monthlyEmissions; // Conversão para títulos de carbono (em toneladas)
+        const creditValueMonthly = calculateCreditValue(initialCreditValue, carbonCreditsMonthly); // Valor em Reais
+        const projectsCompensation = Math.ceil(carbonCreditsMonthly / 10); // Projetos de compensação em hectares
+
+        // Exibir resultados
+        const resultText = `Emissões Mensais: ${monthlyEmissions.toFixed(2)} ton CO2`;
+        resultElement.textContent = resultText;
+
+        // Adicionar resultados à tabela
+        const newRow = resultsTableBody.insertRow();
+        newRow.insertCell(0).textContent = fuelType.charAt(0).toUpperCase() + fuelType.slice(1);
+        newRow.insertCell(1).textContent = monthlyEmissions.toFixed(2);
+        newRow.insertCell(2).textContent = carbonCreditsMonthly.toFixed(2);
+        newRow.insertCell(3).textContent = `R$ ${creditValueMonthly.toFixed(2)}`;
+        newRow.insertCell(4).textContent = projectsCompensation;
+
+        // Atualizar gráfico
+        updateChart(monthlyEmissions, carbonCreditsMonthly, initialCreditValue);
+    }
+
+    function calculateCreditValue(initialValue, carbonCredits) {
+        // Calcular o valor total dos créditos de carbono
+        return initialValue * carbonCredits;
+    }
+
+    // Dados do gráfico
+    let myChart;
+
+    function updateChart(monthly, carbonCredits, initialCreditValue) {
+        const ctx = document.getElementById('myChart').getContext('2d');
+        
+        // Se o gráfico já existe, destruí-lo
+        if (myChart) {
+            myChart.destroy();
+        }
+
+        // Criar os dados do gráfico
+        const months = Array.from({ length: 12 }, (_, i) => i + 1);
+        const monthlyEmissionsData = months.map(month => monthly * month);
+        const carbonCreditsData = monthlyEmissionsData.map(emission => emission); // Títulos de carbono
+        const creditValueData = carbonCreditsData.map(credits => credits * initialCreditValue); // Valor em reais
+        const projectsCompensationData = carbonCreditsData.map(credits => Math.ceil(credits / 10)); // Hectares de compensação
+
+        // Estimativa de variação do valor do crédito de carbono ao longo do ano
+        const creditValueVariation = months.map((month) => {
+            // Simular variação percentual (exemplo: +5% a cada mês)
+            const variation = 1 + (Math.sin(month / 12 * Math.PI) * 0.1); // Variação entre 90% a 110%
+            return initialCreditValue * variation;
+        });
+
+        // Atualizar o gráfico para incluir variação no valor do crédito
+        const updatedCreditValueData = carbonCreditsData.map((credits, index) => credits * creditValueVariation[index]);
+
+        // Criar um novo gráfico
+        myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: months.map(month => `Mês ${month}`),
+                datasets: [
+                    {
+                        label: 'Emissões Acumuladas (ton CO₂)',
+                        data: monthlyEmissionsData,
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        fill: true
+                    },
+                    {
+                        label: 'Títulos de Carbono Acumulados (ton)',
+                        data: carbonCreditsData,
+                        borderColor: 'rgba(153, 102, 255, 1)',
+                        backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                        fill: true
+                    },
+                    {
+                        label: 'Valor dos Créditos (R$)',
+                        data: updatedCreditValueData,
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        fill: true
+                    },
+                    {
+                        label: 'Projetos de Compensação (Hectares)',
+                        data: projectsCompensationData,
+                        borderColor: 'rgba(255, 206, 86, 1)',
+                        backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                        fill: true
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Emissões / Títulos de Carbono / Valor / Hectares'
+                        }
+                    }
+                }
+            }
+        });
+    }
+    </script>
+</body>
+</html>
