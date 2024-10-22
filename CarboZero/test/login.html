@@ -1,50 +1,195 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panorama de Emissões de CO₂</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>CarboZero - Cadastro/Login</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        .logo {
+            display: block;
+            margin: 0 auto 20px auto;
+            width: 100px;
+            height: auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        input {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #035812;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #message {
+            margin: 10px 0;
+            text-align: center;
+        }
+    </style>
 </head>
+
 <body>
     <div class="container">
-        <h1>Panorama de Emissões de CO₂ Anuais</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>Ano</th>
-                    <th>Emissões de CO₂ (toneladas)</th>
-                    <th>Títulos de Carbono Necessários</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>2020</td>
-                    <td>1500</td>
-                    <td>75</td>
-                </tr>
-                <tr>
-                    <td>2021</td>
-                    <td>1200</td>
-                    <td>60</td>
-                </tr>
-                <tr>
-                    <td>2022</td>
-                    <td>1000</td>
-                    <td>50</td>
-                </tr>
-                <tr>
-                    <td>2023</td>
-                    <td>800</td>
-                    <td>40</td>
-                </tr>
-                <tr>
-                    <td>2024</td>
-                    <td>600</td>
-                    <td>30</td>
-                </tr>
-            </tbody>
-        </table>
+        <img src="img/carbozero.png" alt="Logo" class="logo">
+        <h1 id="form-title">Cadastro</h1>
+        <form id="user-form">
+            <input type="text" id="name" placeholder="Nome Completo" required>
+            <input type="email" id="email" placeholder="E-mail" required>
+            <input type="password" id="password" placeholder="Senha" required>
+            <input type="password" id="confirm-password" placeholder="Confirme a Senha" required>
+            <input type="text" id="cpf" placeholder="CPF/CNPJ" required>
+            <input type="text" id="endereco" placeholder="Endereço" required>
+            <input type="tel" id="telefone" placeholder="Telefone" required>
+            <button type="submit" id="form-button">Cadastrar</button>
+        </form>
+        <div id="message" class="hidden"></div>
+        <p id="toggle-form" style="text-align:center; cursor: pointer;">Já tem uma conta? <span id="toggle-text">Faça login</span></p>
     </div>
+
+    <script>
+        const formTitle = document.getElementById('form-title');
+        const formButton = document.getElementById('form-button');
+        const toggleForm = document.getElementById('toggle-form');
+        const toggleText = document.getElementById('toggle-text');
+        const messageDiv = document.getElementById('message');
+        let isLogin = false;
+
+        // Alterna entre cadastro e login
+        toggleForm.addEventListener('click', function () {
+            isLogin = !isLogin;
+            if (isLogin) {
+                formTitle.textContent = 'Login';
+                formButton.textContent = 'Entrar';
+                toggleText.textContent = 'Cadastre-se';
+                document.getElementById('name').classList.add('hidden');
+                document.getElementById('cpf').classList.add('hidden');
+                document.getElementById('endereco').classList.add('hidden');
+                document.getElementById('telefone').classList.add('hidden');
+                document.getElementById('confirm-password').classList.add('hidden');
+            } else {
+                formTitle.textContent = 'Cadastro';
+                formButton.textContent = 'Cadastrar';
+                toggleText.textContent = 'Faça login';
+                document.getElementById('name').classList.remove('hidden');
+                document.getElementById('cpf').classList.remove('hidden');
+                document.getElementById('endereco').classList.remove('hidden');
+                document.getElementById('telefone').classList.remove('hidden');
+                document.getElementById('confirm-password').classList.remove('hidden');
+            }
+            messageDiv.classList.add('hidden'); // Limpa mensagens ao alternar
+        });
+
+        // Manipula o formulário de cadastro/login
+        document.getElementById('user-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            const cpf = document.getElementById('cpf').value;
+            const endereco = document.getElementById('endereco').value;
+            const telefone = document.getElementById('telefone').value;
+
+            if (password !== confirmPassword) {
+                showMessage('As senhas não coincidem!', 'red');
+                return;
+            }
+
+            if (isLogin) {
+                loginUser(email, password);
+            } else {
+                registerUser(name, email, password, cpf, endereco, telefone);
+            }
+        });
+
+        // Função para registrar um novo usuário
+        function registerUser(name, email, password, cpf, endereco, telefone) {
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+
+            // Verifica se o e-mail já está cadastrado
+            if (users.find(user => user.email === email)) {
+                showMessage('E-mail já cadastrado!', 'red');
+                return;
+            }
+
+            // Adiciona o novo usuário ao LocalStorage
+            users.push({ name, email, password, cpf, endereco, telefone });
+            localStorage.setItem('users', JSON.stringify(users));
+
+            showMessage('Cadastro realizado com sucesso!', 'green');
+            document.getElementById('user-form').reset(); // Limpa o formulário
+        }
+
+        // Função para realizar login
+        function loginUser(email, password) {
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const user = users.find(user => user.email === email && user.password === password);
+
+            if (user) {
+                showMessage(`Bem-vindo, ${user.name}!`, 'green');
+                // Redirecionar para a página principal (altere para a página correta)
+                window.location.href = 'homePege.html';
+            } else {
+                showMessage('E-mail ou senha incorretos!', 'red');
+            }
+        }
+
+        // Função para exibir mensagens de feedback
+        function showMessage(message, color) {
+            messageDiv.textContent = message;
+            messageDiv.style.color = color;
+            messageDiv.classList.remove('hidden');
+        }
+    </script>
 </body>
+
 </html>
