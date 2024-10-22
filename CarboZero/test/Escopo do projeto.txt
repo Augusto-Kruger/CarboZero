@@ -1,1 +1,2 @@
-Escopo, Regra de negocio(como lucra), 
+Escopo, Regra de negocio(como lucra),
+permissões de usuario, autenticador 
