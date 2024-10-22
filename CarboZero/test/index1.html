@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Títulos de Carbono</title>
+    <link rel="stylesheet" href="css/homePag.css">
+</head>
+
+<body>
+    <header>
+        <h1>Títulos de Carbono</h1>
+        <p>Entenda como funcionam e sua importância na luta contra as mudanças climáticas.</p>
+    </header>
+    <section id="proximaPag">
+        <div class="section-container">
+            <a href="index.html" class="botao-calculadora">Calculadora CO²</a>
+        </div>
+    </section>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <button class="navbar-toggle" onclick="toggleMenu()">☰</button>
+        <ul id="menu">
+            <li><a href="#o-que-sao">O que são</a></li>
+            <li><a href="#como-funcionam">Como funcionam</a></li>
+            <li><a href="#importancia">Importância</a></li>
+            <li><a href="#desafios">Desafios</a></li>
+            <li><a href="#conclusao">Conclusão</a></li>
+        </ul>
+    </nav>
+
+
+    <main>
+        <section id="o-que-sao">
+            <div class="section-container">
+                <h2>O Que São Títulos de Carbono?</h2>
+                <div class="image-container">
+                    <img src="img/1.jpg" alt="o-que-sao" class="responsive">
+                    <img src="img/2.jpg" alt="o-que-sao" class="responsive">
+                    <img src="img/FS.jpg" alt="o-que-sao" class="responsive">
+                </div>
+                <p>Os <strong>títulos de carbono</strong> são instrumentos financeiros que representam a quantidade de
+                    CO₂ ou outros gases de efeito estufa que foram evitados ou removidos da atmosfera.</p>
+            </div>
+        </section>
+
+        <section id="como-funcionam">
+            <div class="section-container">
+                <h2>Como Funcionam os Títulos de Carbono</h2>
+                <p>Os títulos de carbono são gerados por projetos que promovem a conservação ambiental, como
+                    reflorestamento e uso de energias renováveis.</p>
+            </div>
+        </section>
+
+        <section id="importancia">
+            <div class="section-container">
+                <h2>Importância dos Títulos de Carbono</h2>
+                <img src="img/ICC.png" alt="Importância dos Títulos de Carbono" class="responsive">
+                <ul>
+                    <li>Redução de Emissões</li>
+                    <li>Financiamento de Projetos Sustentáveis</li>
+                    <li>Conformidade Regulatória</li>
+                    <li>Conscientização e Ação Climática</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="desafios">
+            <div class="section-container">
+                <h2>Desafios e Críticas</h2>
+                <img src="img/good.jpg" alt="Desafios dos Títulos de Carbono" class="responsive">
+                <p>Embora eficazes, os títulos de carbono enfrentam críticas sobre a validade dos projetos que os geram
+                    e a possibilidade de empresas usarem isso como uma licença para poluir.</p>
+            </div>
+        </section>
+
+        <section id="conclusao">
+            <div class="section-container">
+                <h2>Conclusão</h2>
+                <img src="img/4.jpg" alt="Futuro Sustentável" class="responsive">
+                <p>Os títulos de carbono são uma ferramenta essencial no combate às mudanças climáticas, promovendo a
+                    sustentabilidade e ajudando a financiar projetos que beneficiam o meio ambiente.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Títulos de Carbono. Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- Script para toggling do menu -->
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            menu.classList.toggle('active');
+        }
+    </script>
+</body>
+
+</html>
