@@ -1,2 +1,3 @@
 Escopo, Regra de negocio(como lucra),
-permissões de usuario, autenticador 
+permissões de usuario;
+tarefa pra quarta(Qual a melhor forma de estrutura o GitHub)
