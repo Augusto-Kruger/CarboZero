@@ -5,6 +5,141 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Venda de Créditos de Carbono</title>
     <style>
+        /* Estilos Gerais da Barra Superior */
+.barra-superior {
+    background-color: #ffffff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-bottom: 2px solid rgba(76, 175, 80, 0.5);
+    user-select: none;
+}
+
+.barra-superior .logo img {
+    max-height: 110px;
+    margin-right: 20px;
+}
+
+nav {
+    flex-grow: 1;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    align-items: flex-end;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333333;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 5px 0;
+    height: 40px;
+    line-height: 73px;
+    transition: color 0.3s ease;
+    user-select: none;
+}
+
+nav ul li a:hover {
+    color: #4CAF50;
+}
+
+nav ul li:first-child a {
+    color: #287169;
+    font-size: 22px;
+}
+
+.perfil-botao {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    background-color: transparent;
+    color: #287169;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 24px;
+    margin-left: auto;
+    position: relative;
+    top: 2px;
+}
+
+.perfil-botao span {
+    position: relative;
+    top: 2px;
+}
+
+.perfil-botao img.user-icon {
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+}
+
+.perfil-botao img.seta-icon {
+    width: 16px;
+    height: 14px;
+    margin-left: 8px;
+    transition: transform 0.3s ease;
+    position: relative;
+    top: 2px;
+}
+
+.perfil-botao.menu-aberto img.seta-icon {
+    transform: rotate(180deg);
+}
+
+.menu-suspenso {
+    position: absolute;
+    right: 16px;
+    top: 14%;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    list-style: none;
+    padding: 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    width: 200px;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.4s ease;
+}
+
+.menu-suspenso.show {
+    max-height: 400px;
+    opacity: 1;
+}
+
+.menu-suspenso li {
+    width: 100%;
+}
+
+.menu-suspenso li a {
+    display: block;
+    width: 100%;
+    padding: 20px 20px;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.menu-suspenso li a:hover {
+    background-color: #287169;
+    color: #fff;
+}
+
         body {
             font-family: Arial, sans-serif;
         }
@@ -48,6 +183,31 @@
         }
     </style>
 </head>
+<!-- Header com Logo e Navegação -->
+<header class="barra-superior">
+    <div class="logo"><img src="img/cbzLogoHoriz.png" alt="CarboZero Logo"></div>
+    <nav>
+        <ul>
+            <li><a href="homepage.html">Home</a></li>
+            <li><a href="calculadora.html">Calculadora</a></li>
+            <li><a href="Venda.html">Mercado de Créditos</a></li>
+        </ul>
+    </nav>
+    <!-- Botão Minha Conta com menu suspenso -->
+    <div class="perfil-botao">
+        <img src="img/userHeader.png" alt="User Icon" class="user-icon">
+        <span>Perfil</span>
+        <img src="img/setaHeader.png" alt="Seta" class="seta-icon">
+    </div>
+</header>
+
+<!-- Menu suspenso -->
+<ul id="dropdown-menu" class="menu-suspenso">
+    <li><a href="#">Meu Perfil</a></li>
+    <li><a href="#">Área do Comprador</a></li>
+    <li><a href="#">Área do Vendedor</a></li>
+    <li><a href="#">Logoff</a></li>
+</ul>
 <body>
     <div class="container">
         <h1>Cadastro de Anúncio de Venda de Crédito de Carbono</h1>

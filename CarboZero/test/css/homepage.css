@@ -1,0 +1,224 @@
+/* Estilos Gerais */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* Header */
+header {
+    background-color: #ffffff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: flex-start; /* Alinhamento mais à esquerda */
+    align-items: flex-end; /* Ajusta o alinhamento para a linha inferior */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-bottom: 2px solid rgba(76, 175, 80, 0.5);
+    user-select: none; /* Impede a seleção de texto no header */
+}
+
+/* Logo */
+header .logo img {
+    max-height: 110px;
+    margin-right: 20px; /* Reduz a margem entre logo e títulos */
+}
+
+/* Navegação */
+nav {
+    flex-grow: 1; /* Garante que a navegação ocupe o restante do espaço */
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    align-items: flex-end;
+}
+
+nav ul li {
+    margin-left: 20px; /* Reduz a distância entre os itens de navegação */
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333333; /* Cor off-black para os outros títulos */
+    font-weight: bold;
+    font-size: 20px; /* Tamanho dos títulos */
+    padding: 5px 0;
+    height: 40px; /* Altura dos títulos para você ajustar */
+    line-height: 73px; /* Mantém o texto centralizado na altura */
+    transition: color 0.3s ease;
+    user-select: none; /* Impede a seleção de texto nos títulos */
+}
+
+nav ul li a:hover {
+    color: #4CAF50;
+}
+
+/* Título "Home" com cor personalizada */
+nav ul li:first-child a {
+    color: #287169;
+    font-size: 22px; /* Um pouco maior que os outros */
+}
+
+/* Botão Minha Conta (Perfil) */
+.perfil-botao {
+    display: flex;
+    align-items: center; /* Centraliza verticalmente a imagem e o texto */
+    cursor: pointer;
+    background-color: transparent; /* Remove o fundo */
+    color: #287169; /* Altera a cor para combinar com o tema */
+    padding: 10px 20px; /* Aumenta o padding para ampliar o botão */
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 24px; /* Aumenta o tamanho do texto */
+    margin-left: auto;
+    position: relative;
+    top: 2px; /* Mantém o ajuste manual vertical do botão de perfil */
+}
+
+/* Alinhamento manual do texto "Perfil" */
+.perfil-botao span {
+    position: relative;
+    top: 2px; /* Mantém o ajuste manual para alinhar verticalmente o texto "Perfil" */
+}
+
+/* Imagem de perfil e seta */
+.perfil-botao img.user-icon {
+    width: 60px; /* Aumenta o tamanho da imagem do usuário */
+    height: 60px;
+    margin-right: 10px;
+}
+
+.perfil-botao img.seta-icon {
+    width: 16px; /* Aumenta o tamanho da seta */
+    height: 14px;
+    margin-left: 8px; /* Ajusta o espaçamento entre o texto e a seta */
+    transition: transform 0.3s ease; /* Transição suave para a seta */
+    position: relative;
+    top: 2px; /* Mantém o ajuste manual para alinhar verticalmente a seta */
+}
+
+/* Quando o menu está aberto, a seta gira */
+.perfil-botao.menu-aberto img.seta-icon {
+    transform: rotate(180deg); /* Gira a seta para cima quando o menu está aberto */
+}
+
+.menu-suspenso {
+    position: absolute;
+    right: 16px;
+    top: 14%; 
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    list-style: none;
+    padding: 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    width: 200px;
+    max-height: 0; /* Altura inicial */
+    opacity: 0; /* Invisível inicialmente */
+    overflow: hidden; /* Esconde o conteúdo durante a animação */
+    transition: max-height 0.4s ease, opacity 0.4s ease; /* Animação suave */
+}
+
+.menu-suspenso.show {
+    max-height: 400px; /* Altura máxima quando o menu é mostrado */
+    opacity: 1; /* Totalmente visível */
+}
+
+.menu-suspenso li {
+    width: 100%;
+}
+
+.menu-suspenso li a {
+    display: block;
+    width: 100%;
+    padding: 20px 20px;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    box-sizing: border-box;
+}
+
+.menu-suspenso li a:hover {
+    background-color: #287169;
+    color: #fff;
+}
+
+/* ===================== */
+/* Media Queries - Responsividade */
+/* ===================== */
+
+/* Tablets horizontais (768px - 1199px) */
+@media (max-width: 1199px) and (min-width: 768px) {
+    header {
+        padding: 10px;
+    }
+    .perfil-botao {
+        font-size: 20px;
+    }
+    .perfil-botao img.user-icon {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+/* Tablets verticais e grandes smartphones (600px - 767px) */
+@media (max-width: 767px) and (min-width: 600px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+    }
+    .perfil-botao {
+        font-size: 18px;
+    }
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* Smartphones (480px - 599px) */
+@media (max-width: 599px) and (min-width: 480px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+    }
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+    .perfil-botao {
+        font-size: 16px;
+    }
+    .perfil-botao img.user-icon {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* Smartphones pequenos (menor que 480px) */
+@media (max-width: 479px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+    }
+    .perfil-botao {
+        font-size: 14px;
+    }
+    .perfil-botao img.user-icon {
+        width: 35px;
+        height: 35px;
+    }
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+    nav ul li {
+        margin-left: 0;
+    }
+}

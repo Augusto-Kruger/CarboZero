@@ -1,101 +1,52 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Títulos de Carbono</title>
-    <link rel="stylesheet" href="css/homePag.css">
+    <title>CarboZero - Créditos de Carbono</title>
+    <link rel="stylesheet" href="css/homepage.css">
 </head>
-
 <body>
+    <!-- Header com Logo e Navegação -->
     <header>
-        <h1>Títulos de Carbono</h1>
-        <p>Entenda como funcionam e sua importância na luta contra as mudanças climáticas.</p>
-    </header>
-    <section id="proximaPag">
-        <div class="section-container">
-            <a href="calculadora.html" class="botao-calculadora">Calculadora CO²</a>
+        <div class="logo"><img src="img/cbzLogoHoriz.png" alt="CarboZero Logo"></div>
+        <nav>
+            <ul>
+                <li><a href="homepage.html">Home</a></li>
+                <li><a href="calculadora.html">Calculadora</a></li>
+                <li><a href="Venda.html">Mercado de Créditos</a></li>
+                <!--    Acha necessario? talves ancoras no lugar 
+                <li><a href="sobre.html">Sobre</a></li> -->
+            </ul>
+        </nav>
+        <!-- Botão Minha Conta com menu suspenso -->
+        <div class="perfil-botao">
+            <img src="img/userHeader.png" alt="User Icon" class="user-icon">
+            <span>Perfil</span>
+            <img src="img/setaHeader.png" alt="Seta" class="seta-icon">
         </div>
+    </header>
+
+    <!-- Menu suspenso -->
+    <ul id="dropdown-menu" class="menu-suspenso">
+        <li><a href="#">Meu Perfil</a></li>
+        <li><a href="#">Área do Comprador</a></li>
+        <li><a href="#">Área do Vendedor</a></li>
+        <li><a href="#">Logoff</a></li>
+    </ul>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Ajude o Planeta, Compense Suas Emissões de Carbono</h1>
+        <button><a href="calculadora.html">Calcule Suas Emissões</a></button>
+        <button><a href="Venda.html">Compre Créditos Agora</a></button>
     </section>
-    <!-- Navbar -->
-    <nav class="navbar">
-        <button class="navbar-toggle" onclick="toggleMenu()">☰</button>
-        <ul id="menu">
-            <li><a href="#o-que-sao">O que são</a></li>
-            <li><a href="#como-funcionam">Como funcionam</a></li>
-            <li><a href="#importancia">Importância</a></li>
-            <li><a href="#desafios">Desafios</a></li>
-            <li><a href="#conclusao">Conclusão</a></li>
-        </ul>
-    </nav>
 
-
-    <main>
-        <section id="o-que-sao">
-            <div class="section-container">
-                <h2>O Que São Títulos de Carbono?</h2>
-                <div class="image-container">
-                    <img src="img/1.jpg" alt="o-que-sao" class="responsive">
-                    <img src="img/2.jpg" alt="o-que-sao" class="responsive">
-                    <img src="img/FS.jpg" alt="o-que-sao" class="responsive">
-                </div>
-                <p>Os <strong>títulos de carbono</strong> são instrumentos financeiros que representam a quantidade de
-                    CO₂ ou outros gases de efeito estufa que foram evitados ou removidos da atmosfera.</p>
-            </div>
-        </section>
-
-        <section id="como-funcionam">
-            <div class="section-container">
-                <h2>Como Funcionam os Títulos de Carbono</h2>
-                <p>Os títulos de carbono são gerados por projetos que promovem a conservação ambiental, como
-                    reflorestamento e uso de energias renováveis.</p>
-            </div>
-        </section>
-
-        <section id="importancia">
-            <div class="section-container">
-                <h2>Importância dos Títulos de Carbono</h2>
-                <img src="img/ICC.png" alt="Importância dos Títulos de Carbono" class="responsive">
-                <ul>
-                    <li>Redução de Emissões</li>
-                    <li>Financiamento de Projetos Sustentáveis</li>
-                    <li>Conformidade Regulatória</li>
-                    <li>Conscientização e Ação Climática</li>
-                </ul>
-            </div>
-        </section>
-
-        <section id="desafios">
-            <div class="section-container">
-                <h2>Desafios e Críticas</h2>
-                <img src="img/good.jpg" alt="Desafios dos Títulos de Carbono" class="responsive">
-                <p>Embora eficazes, os títulos de carbono enfrentam críticas sobre a validade dos projetos que os geram
-                    e a possibilidade de empresas usarem isso como uma licença para poluir.</p>
-            </div>
-        </section>
-
-        <section id="conclusao">
-            <div class="section-container">
-                <h2>Conclusão</h2>
-                <img src="img/4.jpg" alt="Futuro Sustentável" class="responsive">
-                <p>Os títulos de carbono são uma ferramenta essencial no combate às mudanças climáticas, promovendo a
-                    sustentabilidade e ajudando a financiar projetos que beneficiam o meio ambiente.</p>
-            </div>
-        </section>
-    </main>
-
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2024 Títulos de Carbono. Todos os direitos reservados.</p>
+        <p>Conecte-se com a natureza e compense suas emissões de carbono</p>
     </footer>
 
-    <!-- Script para toggling do menu -->
-    <script>
-        function toggleMenu() {
-            const menu = document.getElementById('menu');
-            menu.classList.toggle('active');
-        }
-    </script>
+    <script src="script/homepage.js"></script>
 </body>
-
 </html>
