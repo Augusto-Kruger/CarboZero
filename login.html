@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarboZero - Login/Cadastro</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #144201;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        .logo {
+            display: block;
+            margin: 0 auto 20px auto;
+            width: 100px;
+            height: auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        input {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #035812;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .message {
+            margin: 10px 0;
+            color: red;
+            text-align: center;
+        }
+
+        .toggle-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .toggle-text {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <img src="img/carbozero.png" alt="Logo" class="logo">
+        <h1 id="form-title">LOGIN</h1>
+
+        <!-- Formulário de Login/Cadastro -->
+        <form id="user-form">
+            <!-- Campos de Cadastro -->
+            <div id="cadastro-fields" class="hidden">
+                <input type="text" id="name" placeholder="Nome Completo">
+                <input type="email" id="email" placeholder="E-mail">
+                <input type="password" id="password" placeholder="Senha">
+                <input type="password" id="confirm-password" placeholder="Confirme a Senha">
+                <input type="text" id="cpf" placeholder="CPF/CNPJ">
+                <input type="text" id="endereco" placeholder="Endereço">
+                <input type="text" id="telefone" placeholder="Telefone">
+            </div>
+
+            <!-- Campos de Login -->
+            <div id="login-fields">
+                <input type="email" id="login-email" placeholder="E-mail">
+                <input type="password" id="login-password" placeholder="Senha">
+            </div>
+
+            <button type="submit" id="form-button">Entrar</button>
+        </form>
+
+        <!-- Texto e botão de alternância entre Login/Cadastro -->
+        <div class="toggle-container">
+            <span class="toggle-text">Ainda não possui conta?</span>
+            <button id="toggle-form">Cadastre-se</button>
+        </div>
+        
+        <div id="message" class="message hidden"></div>
+    </div>
+
+    <script>
+        function showMessage(message, color) {
+            const messageBox = document.getElementById('message');
+            messageBox.textContent = message;
+            messageBox.style.color = color;
+            messageBox.classList.remove('hidden');
+        }
+
+        function registerUser(name, email, password, cpf, endereco, telefone) {
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const newUser = { name, email, password, cpf, endereco, telefone };
+            users.push(newUser);
+            localStorage.setItem('users', JSON.stringify(users));
+            showMessage('Usuário registrado com sucesso!', 'green');
+        }
+
+        function loginUser(email, password) {
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const user = users.find(user => user.email === email && user.password === password);
+
+            if (user) {
+                showMessage(`Bem-vindo, ${user.name}!`, 'green');
+                setTimeout(() => {
+                    window.location.href = './homePage.html';
+                }, 1000);
+            } else {
+                showMessage('E-mail ou senha incorretos!', 'red');
+            }
+        }
+
+        let isLogin = true;
+        document.getElementById('toggle-form').addEventListener('click', function () {
+            isLogin = !isLogin;
+            document.getElementById('form-title').textContent = isLogin ? 'Login' : 'Cadastro';
+            document.getElementById('form-button').textContent = isLogin ? 'Entrar' : 'Registrar';
+            document.getElementById('toggle-form').textContent = isLogin ? 'Cadastre-se' : 'Entre';
+            document.querySelector('.toggle-text').textContent = isLogin ? 'Ainda não tem uma conta?' : 'Já tem uma conta?';
+            document.getElementById('cadastro-fields').classList.toggle('hidden');
+            document.getElementById('login-fields').classList.toggle('hidden');
+        });
+
+        document.getElementById('user-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            if (isLogin) {
+                const email = document.getElementById('login-email').value;
+                const password = document.getElementById('login-password').value;
+                loginUser(email, password);
+            } else {
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                const confirmPassword = document.getElementById('confirm-password').value;
+                const cpf = document.getElementById('cpf').value;
+                const endereco = document.getElementById('endereco').value;
+                const telefone = document.getElementById('telefone').value;
+
+                if (password !== confirmPassword) {
+                    showMessage('As senhas não coincidem!', 'red');
+                    return;
+                }
+
+                registerUser(name, email, password, cpf, endereco, telefone);
+            }
+        });
+    </script>
+</body>
+
+</html>
