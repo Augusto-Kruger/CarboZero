@@ -113,9 +113,9 @@
             messageBox.classList.remove('hidden');
         }
 
-        function registerUser(name, email, password, cpf, endereco, telefone) {
+        function registerUser(name, email, password, confirmPassword, cpf, endereco, telefone) {
             const users = JSON.parse(localStorage.getItem('users')) || [];
-            const newUser = { name, email, password, cpf, endereco, telefone };
+            const newUser = { name, email, password, confirmPassword, cpf, endereco, telefone };
             users.push(newUser);
             localStorage.setItem('users', JSON.stringify(users));
             showMessage('Usuário registrado com sucesso!', 'green');
@@ -128,7 +128,7 @@
             if (user) {
                 showMessage(`Bem-vindo, ${user.name}!`, 'green');
                 setTimeout(() => {
-                    window.location.href = './homePage.html';
+                    window.location.href = 'homePage.html';
                 }, 1000);
             } else {
                 showMessage('E-mail ou senha incorretos!', 'red');
@@ -154,6 +154,7 @@
                 loginUser(email, password);
             } else {
                 const name = document.getElementById('name').value;
+                const Password = document.getElementById('password').value;
                 const confirmPassword = document.getElementById('confirm-password').value;
                 const cpf = document.getElementById('cpf').value;
                 const endereco = document.getElementById('endereco').value;

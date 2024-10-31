@@ -6,139 +6,134 @@
     <title>Venda de Créditos de Carbono</title>
     <style>
         /* Estilos Gerais da Barra Superior */
-.barra-superior {
-    background-color: #ffffff;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-end;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-bottom: 2px solid rgba(76, 175, 80, 0.5);
-    user-select: none;
-}
+        .barra-superior {
+            background-color: #ffffff;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-end;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-bottom: 2px solid rgba(76, 175, 80, 0.5);
+            user-select: none;
+        }
 
-.barra-superior .logo img {
-    max-height: 110px;
-    margin-right: 20px;
-}
+        .barra-superior .logo img {
+            max-height: 110px;
+            margin-right: 20px;
+        }
 
-nav {
-    flex-grow: 1;
-}
+        nav {
+            flex-grow: 1;
+        }
 
-nav ul {
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-    align-items: flex-end;
-}
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+            align-items: flex-end;
+        }
 
-nav ul li {
-    margin-left: 20px;
-}
+        nav ul li {
+            margin-left: 20px;
+        }
 
-nav ul li a {
-    text-decoration: none;
-    color: #333333;
-    font-weight: bold;
-    font-size: 20px;
-    padding: 5px 0;
-    height: 40px;
-    line-height: 73px;
-    transition: color 0.3s ease;
-    user-select: none;
-}
+        nav ul li a {
+            text-decoration: none;
+            color: #333333;
+            font-weight: bold;
+            font-size: 20px;
+            padding: 5px 0;
+            height: 40px;
+            line-height: 73px;
+            transition: color 0.3s ease;
+            user-select: none;
+        }
 
-nav ul li a:hover {
-    color: #4CAF50;
-}
+        nav ul li a:hover {
+            color: #4CAF50;
+        }
 
-nav ul li:first-child a {
-    color: #287169;
-    font-size: 22px;
-}
+        nav ul li:first-child a {
+            color: #287169;
+            font-size: 22px;
+        }
 
-.perfil-botao {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    background-color: transparent;
-    color: #287169;
-    padding: 10px 20px;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 24px;
-    margin-left: auto;
-    position: relative;
-    top: 2px;
-}
+        .perfil-botao {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            background-color: transparent;
+            color: #287169;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 24px;
+            margin-left: auto;
+            position: relative;
+            top: 2px;
+        }
 
-.perfil-botao span {
-    position: relative;
-    top: 2px;
-}
+        .perfil-botao img.user-icon {
+            width: 60px;
+            height: 60px;
+            margin-right: 10px;
+        }
 
-.perfil-botao img.user-icon {
-    width: 60px;
-    height: 60px;
-    margin-right: 10px;
-}
+        .perfil-botao img.seta-icon {
+            width: 16px;
+            height: 14px;
+            margin-left: 8px;
+            transition: transform 0.3s ease;
+            position: relative;
+            top: 2px;
+        }
 
-.perfil-botao img.seta-icon {
-    width: 16px;
-    height: 14px;
-    margin-left: 8px;
-    transition: transform 0.3s ease;
-    position: relative;
-    top: 2px;
-}
+        .perfil-botao.menu-aberto img.seta-icon {
+            transform: rotate(180deg);
+        }
 
-.perfil-botao.menu-aberto img.seta-icon {
-    transform: rotate(180deg);
-}
+        .menu-suspenso {
+            position: absolute;
+            right: 16px;
+            top: 14%;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            list-style: none;
+            padding: 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            width: 200px;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, opacity 0.4s ease;
+        }
 
-.menu-suspenso {
-    position: absolute;
-    right: 16px;
-    top: 14%;
-    background-color: white;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    list-style: none;
-    padding: 0;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-    width: 200px;
-    max-height: 0;
-    opacity: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease, opacity 0.4s ease;
-}
+        .menu-suspenso.show {
+            max-height: 400px;
+            opacity: 1;
+        }
 
-.menu-suspenso.show {
-    max-height: 400px;
-    opacity: 1;
-}
+        .menu-suspenso li {
+            width: 100%;
+        }
 
-.menu-suspenso li {
-    width: 100%;
-}
+        .menu-suspenso li a {
+            display: block;
+            width: 100%;
+            padding: 20px 20px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
 
-.menu-suspenso li a {
-    display: block;
-    width: 100%;
-    padding: 20px 20px;
-    text-decoration: none;
-    color: #333;
-    font-weight: bold;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.menu-suspenso li a:hover {
-    background-color: #287169;
-    color: #fff;
-}
+        .menu-suspenso li a:hover {
+            background-color: #287169;
+            color: #fff;
+        }
 
         body {
             font-family: Arial, sans-serif;
@@ -173,48 +168,76 @@ nav ul li:first-child a {
 
         #adsList {
             margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
         }
 
         .ad {
             border: 1px solid #ccc;
-            padding: 10px;
-            margin-bottom: 10px;
-            border-radius: 5px;
+            padding: 15px;
+            width: 100%;
+            max-width: 360px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background-color: #f9f9f9;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .ad p {
+            margin: 5px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .ad p img {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+            opacity: 0.8;
         }
     </style>
 </head>
-<!-- Header com Logo e Navegação -->
-<header class="barra-superior">
-    <div class="logo"><img src="img/cbzLogoHoriz.png" alt="CarboZero Logo"></div>
-    <nav>
-        <ul>
-            <li><a href="homepage.html">Home</a></li>
-            <li><a href="calculadora.html">Calculadora</a></li>
-            <li><a href="Venda.html">Mercado de Créditos</a></li>
-        </ul>
-    </nav>
-    <!-- Botão Minha Conta com menu suspenso -->
-    <div class="perfil-botao">
-        <img src="img/userHeader.png" alt="User Icon" class="user-icon">
-        <span>Perfil</span>
-        <img src="img/setaHeader.png" alt="Seta" class="seta-icon">
-    </div>
-</header>
-
-<!-- Menu suspenso -->
-<ul id="dropdown-menu" class="menu-suspenso">
-    <li><a href="#">Meu Perfil</a></li>
-    <li><a href="#">Área do Comprador</a></li>
-    <li><a href="#">Área do Vendedor</a></li>
-    <li><a href="#">Logoff</a></li>
-</ul>
 <body>
+    <!-- Header com Logo e Navegação -->
+    <header class="barra-superior">
+        <div class="logo"><img src="img/cbzLogoHoriz.png" alt="CarboZero Logo"></div>
+        <nav>
+            <ul>
+                <li><a href="homepage.html">Home</a></li>
+                <li><a href="calculadora.html">Calculadora</a></li>
+                <li><a href="Venda.html">Mercado de Créditos</a></li>
+            </ul>
+        </nav>
+        <div class="perfil-botao">
+            <img src="img/userHeader.png" alt="User Icon" class="user-icon">
+            <span>Perfil</span>
+            <img src="img/setaHeader.png" alt="Seta" class="seta-icon">
+        </div>
+    </header>
+
+    <ul id="dropdown-menu" class="menu-suspenso">
+        <li><a href="#">Meu Perfil</a></li>
+        <li><a href="#">Área do Comprador</a></li>
+        <li><a href="#">Área do Vendedor</a></li>
+        <li><a href="#">Logoff</a></li>
+    </ul>
+
     <div class="container">
         <h1>Cadastro de Anúncio de Venda de Crédito de Carbono</h1>
 
         <form id="adForm">
             <label for="locality">Localidade:</label>
-            <input type="text" id="locality" required>
+            <select id="locality" required>
+                <option value="Sul">Sul</option>
+                <option value="Norte">Norte</option>
+                <option value="Leste">Leste</option>
+                <option value="Oeste">Oeste</option>
+            </select>
 
             <label for="area">Área Preservada (hectares):</label>
             <input type="number" id="area" required>
@@ -227,10 +250,6 @@ nav ul li:first-child a {
                 <option value="Pampas">Pampas</option>
             </select>
 
-            <!-- Novo Campo para Preço -->
-            <label for="price">Preço por Unidade de Crédito de Carbono (R$):</label>
-            <input type="number" id="price" required>
-
             <button type="submit">Cadastrar Anúncio</button>
         </form>
 
@@ -239,20 +258,17 @@ nav ul li:first-child a {
     </div>
 
     <script>
-        // Função para obter os anúncios armazenados no LocalStorage
         function getAds() {
             const ads = localStorage.getItem('carbonAds');
             return ads ? JSON.parse(ads) : [];
         }
 
-        // Função para salvar um novo anúncio no LocalStorage
         function saveAd(locality, area, vegetation, price) {
             const ads = getAds();
             ads.push({ locality, area, vegetation, price });
             localStorage.setItem('carbonAds', JSON.stringify(ads));
         }
 
-        // Função para exibir os anúncios armazenados
         function displayAds() {
             const adsList = document.getElementById('adsList');
             adsList.innerHTML = '';
@@ -261,35 +277,78 @@ nav ul li:first-child a {
                 const adElement = document.createElement('div');
                 adElement.classList.add('ad');
                 adElement.innerHTML = `
-                    <p><strong>Localidade:</strong> ${ad.locality}</p>
-                    <p><strong>Área Preservada:</strong> ${ad.area} hectares</p>
-                    <p><strong>Categoria de Vegetação:</strong> ${ad.vegetation}</p>
-                    <p><strong>Preço por Unidade de Crédito de Carbono:</strong> R$ ${ad.price}</p>
+                    <p><img src="img/localidadeIcon.png" alt="Localidade Icon"><strong>Localidade:</strong> ${ad.locality}</p>
+                    <p><img src="img/areaIcon.png" alt="Área Icon"><strong>Área Preservada:</strong> ${ad.area} hectares</p>
+                    <p><img src="img/vegetacaoIcon.png" alt="Vegetação Icon"><strong>Vegetação:</strong> ${ad.vegetation}</p>
+                    <p><img src="img/precoIcon.png" alt="Preço Icon"><strong>Preço Estimado:</strong> R$ ${ad.price.toLocaleString('pt-BR')}</p>
                 `;
                 adsList.appendChild(adElement);
             });
         }
 
-        // Capturando o formulário para adicionar novos anúncios
+        function calculatePrice(area, locality, vegetation) {
+            let basePrice = area * 1000; // valor inicial
+
+            switch(locality) {
+                case 'Sul':
+                    basePrice *= 1.1;
+                    break;
+                case 'Norte':
+                    basePrice *= 1.3;
+                    break;
+                case 'Leste':
+                    basePrice *= 1.15;
+                    break;
+                case 'Oeste':
+                    basePrice *= 1.05;
+                    break;
+            }
+
+            switch(vegetation) {
+                case 'Amazônia':
+                    basePrice *= 1.5;
+                    break;
+                case 'Mata Atlântica':
+                    basePrice *= 1.3;
+                    break;
+                case 'Cerrado':
+                    basePrice *= 1.2;
+                    break;
+                case 'Pampas':
+                    basePrice *= 1.1;
+                    break;
+            }
+
+            return Math.round(basePrice);
+        }
+
         document.getElementById('adForm').addEventListener('submit', function (e) {
             e.preventDefault();
             const locality = document.getElementById('locality').value;
-            const area = document.getElementById('area').value;
+            const area = parseFloat(document.getElementById('area').value);
             const vegetation = document.getElementById('vegetation').value;
-            const price = document.getElementById('price').value;
 
-            // Salvando o anúncio no LocalStorage
+            const price = calculatePrice(area, locality, vegetation);
+
             saveAd(locality, area, vegetation, price);
-
-            // Exibindo os anúncios atualizados
             displayAds();
-
-            // Limpando o formulário
             this.reset();
         });
 
-        // Exibindo os anúncios ao carregar a página
-        window.onload = displayAds;
+        displayAds();
+
+        const profileButton = document.querySelector('.perfil-botao');
+        const dropdownMenu = document.getElementById('dropdown-menu');
+
+        profileButton.addEventListener('click', function() {
+            dropdownMenu.classList.toggle('show');
+        });
+
+        document.addEventListener('click', function(event) {
+            if (!profileButton.contains(event.target)) {
+                dropdownMenu.classList.remove('show');
+            }
+        });
     </script>
 </body>
 </html>
