@@ -1,0 +1,408 @@
+@charset "UTF-8";
+body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  width: 100% !important;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+.backRight {
+  position: absolute;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgb(40 113 105), rgb(40 113 105), rgb(55 121 114), rgb(25 37 35));
+}
+
+.backLeft {
+  position: absolute;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to bottom, 
+  rgb(126 188 55), 
+  rgb(56 142 60), 
+  rgb(55 121 114), 
+  rgb(40 113 105));
+}
+
+#back {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: -999;
+}
+
+.canvas-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+}
+
+#slideBox {
+  width: 50%;
+  max-height: 100%;
+  height: 100%;
+  overflow: hidden;
+  margin-left: 50%;
+  position: absolute;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.topLayer {
+  width: 200%;
+  height: 100%;
+  position: relative;
+  left: 0;
+  left: -100%;
+}
+
+label {
+  font-size: 0.8em;
+  text-transform: uppercase;
+}
+
+input {
+  background-color: transparent;
+  border: 0;
+  outline: 0;
+  font-size: 1em;
+  padding: 8px 1px;
+  margin-top: 0.1em;
+  position: relative;
+}
+
+input::placeholder {
+  color: rgba(255, 0, 0, 0.7); /* Cor do placeholder para mensagens de erro */
+  opacity: 1; /* Garante que o placeholder fique visível */
+}
+
+input.error {
+  border-bottom: 1px solid red;
+}
+
+input.error::placeholder {
+  content: attr(data-error);
+}
+
+input:focus.error::placeholder {
+  content: ""; /* Remove a mensagem de erro ao focar no campo */
+}
+
+.voltar-btn {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  color: #7a7a7a; /* Cor do texto */
+  font-size: 1.2em; /* Aumenta o tamanho do texto */
+  cursor: pointer;
+  margin-bottom: 1em;
+  padding: 0;
+  text-transform: uppercase;
+  box-shadow: none;
+  position: absolute;
+  top: 40px; /* Ajusta a distância do topo */
+  left: 20px;
+  font-weight: 600; /* Deixa o texto mais marcado */
+}
+
+.voltar-btn img {
+  width: 24px; /* Aumenta o tamanho do ícone */
+  height: auto;
+  margin-right: 8px; /* Espaço entre o ícone e o texto */
+  margin-top: -4px;
+}
+
+.voltar-btn:hover {
+  color: #388e3c; /* Cor do ícone aplicada ao texto */
+  box-shadow: none; /* Remove o sombreamento */
+}
+
+
+.left {
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  background: #2C3034;
+  left: 0;
+  position: absolute;
+}
+.left label {
+  color: #e3e3e3;
+}
+.left input {
+  border-bottom: 1px solid #e3e3e3;
+  color: #e3e3e3;
+}
+.left input:focus, .left input:active {
+  border-color: #03A9F4;
+  color: #03A9F4;
+}
+.left input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px #2C3034 inset;
+  -webkit-text-fill-color: #e3e3e3;
+}
+.left a {
+  color: #03A9F4;
+}
+
+.right {
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  background: #f9f9f9;
+  right: 0;
+  position: absolute;
+}
+.right label {
+  color: #212121;
+}
+.right input {
+  border-bottom: 1px solid #212121;
+}
+.right input:focus, .right input:active {
+  border-color: #673AB7;
+}
+.right input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px #f9f9f9 inset;
+  -webkit-text-fill-color: #212121;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100%;
+  width: 80%;
+  margin: 0 auto;
+  position: relative;
+}
+
+.content h2 {
+  font-weight: 600;
+  font-size: 2.6em;
+  margin: 0.2em 0 0.1em;
+}
+
+.left .content h2 {
+  font-family: 'Poppins', sans-serif;
+  color: #287169;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap');
+
+.right .content h2 {
+  font-family: 'Poppins', sans-serif;
+  color: #388e3c;
+}
+
+.form-element {
+  margin: 1em 0; /* Ajustado para menor espaçamento */
+}
+.form-element.form-submit {
+  margin: 1em 0 0; /* Ajuste para manter alinhamento próximo */
+}
+
+.form-stack {
+  display: flex;
+  flex-direction: column;
+}
+
+.checkbox {
+  -webkit-appearance: none;
+  outline: none;
+  background-color: #e3e3e3;
+  border: 1px solid #e3e3e3;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+  padding: 12px;
+  border-radius: 4px;
+  display: inline-block;
+  position: relative;
+}
+
+.checkbox:focus, .checkbox:checked:focus,
+.checkbox:active, .checkbox:checked:active {
+  border-color: #03A9F4;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.checkbox:checked {
+  outline: none;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05), inset 15px 10px -12px rgba(255, 255, 255, 0.1);
+}
+
+.checkbox:checked:after {
+  outline: none;
+  content: "✓";
+  color: #03A9F4;
+  font-size: 1.4em;
+  font-weight: 900;
+  position: absolute;
+  top: -4px;
+  left: 4px;
+}
+
+.form-checkbox {
+  display: flex;
+  align-items: center;
+}
+.form-checkbox label {
+  margin: 0 6px 0;
+  font-size: 0.72em;
+}
+
+button {
+  padding: 0.8em 1.2em;
+  margin: 0 10px 0 0;
+  width: auto;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 1em;
+  color: #fff;
+  line-height: 1em;
+  letter-spacing: 0.6px;
+  border-radius: 3px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.1);
+  border: 0;
+  outline: 0;
+  transition: all 0.25s;
+}
+button.signup {
+  background: #287169;
+}
+button.login {
+  background: rgb(56 142 60);
+}
+button.off {
+  background: none;
+  box-shadow: none;
+  margin: 0;
+}
+button.off.signup {
+  color: #287169;
+}
+button.off.login {
+  color: rgb(56 142 60);
+}
+
+button:focus, button:active, button:hover {
+  box-shadow: 0 4px 7px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+button:focus.signup, button:active.signup, button:hover.signup {
+  background: rgb(56 142 60);
+}
+button:focus.login, button:active.login, button:hover.login {
+  background: rgb(55 121 114);
+}
+button:focus.off, button:active.off, button:hover.off {
+  box-shadow: none;
+}
+button:focus.off.signup, button:active.off.signup, button:hover.off.signup {
+  color: rgb(56 142 60);
+  background: #212121;
+}
+button:focus.off.login, button:active.off.login, button:hover.off.login {
+  color: rgb(55 121 114);
+  background: #e3e3e3;
+}
+
+/* Estilos para os botões de rádio */
+.radio {
+  display: flex;
+  gap: 15px;
+  margin: 15px 0;
+}
+
+.radio__1, .radio__2 {
+  display: flex;
+  align-items: center;
+}
+
+.radio__1 input[type="radio"], .radio__2 input[type="radio"] {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #287169;
+  border-radius: 50%;
+  background-color: #e3e3e3;
+  margin-right: 8px;
+  transition: border-color 0.3s, background-color 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+  position: relative;
+}
+
+.radio__1 input[type="radio"]:hover, .radio__2 input[type="radio"]:hover {
+  border-color: #3ca38e; /* Cor mais clara para hover */
+  box-shadow: 0 0 5px rgba(60, 163, 142, 0.5); /* Efeito de sombra */
+}
+
+.radio__1 input[type="radio"]:checked::before, .radio__2 input[type="radio"]:checked::before {
+  content: '';
+  display: block;
+  width: 10px;
+  height: 10px;
+  background-color: #287169; /* Cor do ponto interno */
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: background-color 0.3s; /* Transição suave */
+}
+
+.radio__1 label, .radio__2 label {
+  font-size: 14px;
+  color: #287169;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.3s; /* Transição suave para o texto */
+}
+
+.radio__1 input[type="radio"]:hover + label, .radio__2 input[type="radio"]:hover + label {
+  color: #3ca38e; /* Cor mais clara para hover no texto */
+}
+
+.radio__1 input[type="radio"]:checked + label, .radio__2 input[type="radio"]:checked + label {
+  color: #3ca38e; /* Cor do texto quando o botão está marcado */
+}
+
+
+/* Ajustes de espaçamento e tamanho de campos para resoluções desktop menores */
+@media (max-width: 1200px) {
+  .form-element {
+    margin: 0.8em 0; /* Reduz o espaçamento entre os elementos */
+  }
+  .form-element.form-submit {
+    margin: 0.8em 0 0; /* Ajuste para espaçamento próximo dos botões */
+  }
+  .left .form-element {
+    margin: 0.8em 0; /* Reduz o espaçamento entre os elementos de registro */
+  }
+  .content {
+    width: 90%; /* Ajusta a largura para preencher melhor a tela */
+  }
+}
+
+@media (max-width: 1024px) {
+  .form-element {
+    margin: 0.6em 0; /* Reduz ainda mais o espaçamento */
+  }
+  .form-element.form-submit {
+    margin: 0.6em 0 0; /* Ajuste para espaçamento próximo dos botões */
+  }
+  .left .form-element {
+    margin: 0.6em 0; /* Ajusta o espaçamento entre os elementos de registro */
+  }
+  .content h2 {
+    font-size: 2.2em; /* Ajusta o tamanho da fonte do título */
+  }
+  .content {
+    width: 95%; /* Preenche ainda mais a tela */
+  }
+}

@@ -1,0 +1,234 @@
+/* Footer */
+.carbozero-footer {
+    background-color: #f8f8f8; /* Cor de fundo clara */
+    color: #333; /* Cor do texto */
+    padding: 40px 60px; /* Aumentei o padding para mais espaço lateral */
+    font-family: 'Poppins', sans-serif; /* Altere para fonte Poppins */
+    border-top: 3px solid #7ebc37; /* Linha verde no topo do footer */
+    width: 100%; /* Garantir ocupação total da largura da tela */
+    box-sizing: border-box; /* Inclui padding e borda no cálculo da largura */
+    overflow-x: hidden; /* Evita o scroll horizontal específico no footer */
+}
+
+.footer-container {
+    display: grid; /* Mudança para grid layout para melhor controle do espaço */
+    grid-template-columns: 1.2fr 1.2fr 1.2fr 1.4fr; /* Ajuste para distribuir melhor o espaço e deslocar as seções mais à direita */
+    gap: 20px; /* Reduzi o espaçamento entre colunas */
+    align-items: start;
+    width: 100%; /* Garantir ocupação de toda a largura */
+    justify-content: space-between; /* Empurrar as colunas para ocupar mais espaço à direita */
+    box-sizing: border-box; /* Inclui padding e borda no cálculo da largura */
+    padding: 0 20px; /* Adiciona padding interno para evitar ultrapassar a largura da tela */
+}
+
+.footer-about {
+    grid-column: span 1;
+    text-align: left;
+    position: relative;
+    left: 11px;
+}
+
+/* Logo e Sobre */
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 0; /* Remove espaço extra entre a logo e o texto */
+    position: relative; /* Permitir ajustes manuais */
+    top: 0; /* Ajuste para alinhamento vertical manual da div inteira */
+}
+
+.footer-logo img {
+    max-width: 45px;
+    height: auto;
+    position: relative;
+    top: -34px; /* Ajuste manual do alinhamento vertical */
+}
+
+.footer-logo h3 {
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: -2px;
+    position: relative;
+    top: -39px; /* Ajuste manual do alinhamento vertical */
+}
+
+.footer-logo .carbo {
+    color: #2b7b84; /* Cor do "Carbo" */
+}
+
+.footer-logo .zero {
+    color: #7ebc37; /* Cor do "zero" */
+}
+
+.footer-about p {
+    line-height: 1.4;
+    font-size: 1.1em;
+    max-width: 500px;
+    margin-top: -10px;
+    position: relative; /* Permitir ajustes manuais */
+    top: -24px; /* Ajuste manual do alinhamento vertical */
+}
+
+/* Newsletter */
+.footer-newsletter {
+    margin-top: 20px;
+    text-align: left;
+    position: relative;
+    top: 0;
+    left: 1px;
+}
+
+.footer-newsletter h3 {
+    font-size: 1.2em;
+    color: #7ebc37; /* Verde para destacar */
+    font-weight: bold; /* Negrito para o título do newsletter */
+    position: relative; /* Permitir ajustes manuais */
+    top: 0; /* Ajuste manual para alinhamento vertical do título */
+}
+
+.footer-newsletter form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+    border: 2px solid #444; /* Adiciona uma borda fina */
+    border-radius: 25px; /* Borda arredondada para o contorno */
+    padding: 5px; /* Espaço interno para suavizar o visual */
+    max-width: 350px; /* Reduzindo a largura do formulário */
+    position: relative; /* Permitir ajustes manuais */
+    top: -11px; /* Ajuste manual para alinhamento vertical do formulário */
+}
+
+.footer-newsletter input {
+    padding: 10px;
+    border: none; /* Remove borda interna */
+    outline: none; /* Remove linha de foco */
+    border-radius: 25px; /* Borda arredondada para o campo de texto */
+    flex-grow: 1; /* Faz o campo ocupar o espaço disponível */
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9em;
+    color: #888; /* Placeholder com cor mais suave */
+    position: relative; /* Permitir ajustes manuais */
+    top: 0; /* Ajuste manual para alinhamento vertical do campo de input */
+}
+
+.footer-newsletter input::placeholder {
+    color: #c0c0c0; /* Cor do placeholder */
+}
+
+.footer-newsletter button {
+    background: #7ebc37; /* Verde do botão */
+    border: none;
+    padding: 10px;
+    border-radius: 50%; /* Botão redondo */
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative; /* Permitir ajustes manuais */
+    top: 0; /* Ajuste manual para alinhamento vertical do botão */
+}
+
+.footer-newsletter button:hover {
+    background: #66a32f; /* Efeito de hover suave */
+}
+
+.footer-newsletter button img {
+    width: 15px; /* Ajuste do tamanho da seta */
+}
+
+/* Links Navegação, Redes Sociais e Contato */
+.footer-links,
+.footer-social,
+.footer-contact {
+    position: relative;
+    left: 160px;
+    top: -13px;
+}
+
+.footer-links h3,
+.footer-social h3,
+.footer-contact h3 {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+    text-align: left; /* Todos os títulos alinhados à esquerda */
+    position: relative; /* Permitir ajustes manuais */
+    top: 0; /* Ajuste manual para alinhamento vertical dos títulos */
+}
+
+.footer-links ul,
+.footer-social ul {
+    list-style: none;
+    padding: 0;
+    text-align: left; /* Alinha as listas de links à esquerda */
+    font-weight: 300; /* Deixar o texto mais leve */
+    font-family: 'Roboto', sans-serif; /* Fonte leve */
+}
+
+.footer-links ul li,
+.footer-social ul li {
+    margin-bottom: 10px;
+    font-weight: 300; /* Remover peso e tornar mais leve */
+}
+
+.footer-links ul li a,
+.footer-social ul li a {
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s;
+    font-weight: 300; /* Fonte leve */
+}
+
+.footer-links ul li a:hover,
+.footer-social ul li a:hover {
+    color: #7ebc37; /* Efeito de hover verde */
+}
+
+/* Contato */
+.footer-contact p {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 5px 0;
+    text-align: left; /* Alinha o texto de contato à esquerda */
+    position: relative; /* Permitir ajustes manuais */
+    top: 0; /* Ajuste manual para alinhamento vertical */
+    font-weight: 300; /* Fonte leve */
+    font-family: 'Roboto', sans-serif; /* Fonte leve */
+}
+
+.footer-contact img {
+    width: 18px; /* Ajuste do tamanho dos ícones de contato */
+}
+
+/* Footer Inferior */
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    margin-top: 20px;
+    border-top: 1px solid #e0e0e0;
+    font-size: 0.9em; /* Ajuste do tamanho da fonte para melhor proporção */
+    margin-bottom: -28px;
+}
+
+.footer-bottom p {
+    margin: 0;
+    color: #333;
+}
+
+.footer-bottom a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    margin-left: 15px;
+    font-size: 0.9em; /* Ajuste do tamanho da fonte */
+}
+
+.footer-bottom a:hover {
+    color: #7ebc37;
+}
