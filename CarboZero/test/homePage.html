@@ -3,50 +3,285 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CarboZero - Créditos de Carbono</title>
-    <link rel="stylesheet" href="css/homepage.css">
+    <title>CarboZero - Compense suas Emissões</title>
+    <link rel="icon" type="image/png" href="cbzIcon.png">
+    <link rel="stylesheet" href="assets/css/footer.css">
+    <link rel="stylesheet" href="assets/css/header.css">
+    <link rel="stylesheet" href="assets/css/homepage.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.5/css/swiper.min.css">
 </head>
-<body>
-    <!-- Header com Logo e Navegação -->
+<body data-logged-in="false">
+    <!-- Header -->
     <header>
-        <div class="logo"><img src="img/cbzLogoHoriz.png" alt="CarboZero Logo"></div>
+        <div class="logo">
+            <img src="assets/images/cbzLogo25601080.png" alt="CarboZero Logo">
+        </div>
         <nav>
             <ul>
                 <li><a href="homepage.html">Home</a></li>
                 <li><a href="calculadora.html">Calculadora</a></li>
-                <li><a href="Venda.html">Mercado de Créditos</a></li>
-                <!--    Acha necessario? talves ancoras no lugar 
-                <li><a href="sobre.html">Sobre</a></li> -->
+                <li><a href="mercado.html">Mercado de Créditos</a></li>
+                <li><a href="sobre.html">Sobre</a></li>
             </ul>
         </nav>
+        <!-- Botão de Login -->
+        <button class="botao-login">Fazer login</button>
+
         <!-- Botão Minha Conta com menu suspenso -->
         <div class="perfil-botao">
-            <img src="img/userHeader.png" alt="User Icon" class="user-icon">
+            <img src="assets/images/userHeader.png" alt="User Icon" class="user-icon">
             <span>Perfil</span>
-            <img src="img/setaHeader.png" alt="Seta" class="seta-icon">
+            <img src="assets/images/setaHeader.png" alt="Seta" class="seta-icon">
         </div>
+
+        <!-- Menu suspenso -->
+        <ul id="dropdown-menu" class="menu-suspenso">
+            <li><a href="#">Meu Perfil</a></li>
+            <li><a href="#">Área do Comprador</a></li>
+            <li><a href="#">Área do Vendedor</a></li>
+            <li><a href="#">Logoff</a></li>
+        </ul>
     </header>
 
-    <!-- Menu suspenso -->
-    <ul id="dropdown-menu" class="menu-suspenso">
-        <li><a href="#">Meu Perfil</a></li>
-        <li><a href="#">Área do Comprador</a></li>
-        <li><a href="#">Área do Vendedor</a></li>
-        <li><a href="#">Logoff</a></li>
-    </ul>
+    <!-- Container Principal -->
+    <div class="container">
+        <div class="overlay"></div>
+        <div class="content">
+            <h3>Sustentabilidade e Compensação</h3>
+            <h1>Contribua para um Mundo mais Verde</h1>
+            <p>A CarboZero é uma plataforma que permite calcular, reduzir e compensar suas emissões de carbono, ajudando o planeta.</p>
+            <button class="btn-white">Saiba Mais</button>
+            <button class="btn-green">Compense Agora</button>
+        </div>
+    </div>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <h1>Ajude o Planeta, Compense Suas Emissões de Carbono</h1>
-        <button><a href="calculadora.html">Calcule Suas Emissões</a></button>
-        <button><a href="Venda.html">Compre Créditos Agora</a></button>
-    </section>
+    <!-- Seção do Fluxo de Compensação -->
+    <div class="context textcenter">
+        <h3 class="textgreen">Como Funciona</h3>
+        <h2>Da Emissão à Compensação</h2>
+        <div class="context-icon">
+            <img src="assets/images/eco2.png" alt="Ícone Eco">
+        </div>
+        <p>Na CarboZero, facilitamos a compensação de emissões de carbono ao conectar empresas e pessoas a projetos ambientais.</p>
+    </div>
 
-    <!-- Footer -->
-    <footer>
-        <p>Conecte-se com a natureza e compense suas emissões de carbono</p>
-    </footer>
+    <div class="business-flow">
+        <div class="flow-step">
+            <h3>Cálculo de Emissões</h3>
+            <img src="assets/images/calculateIcon.png" alt="Cálculo de Emissões" class="flow-icon">
+            <p>O usuário calcula suas emissões de CO₂ na nossa calculadora, com base em atividades cotidianas ou operacionais.</p>
+            <div class="step-number">1</div>
+        </div>
+        <div class="flow-step">
+            <h3>Geração de Créditos</h3>
+            <img src="assets/images/farmerIcon.png" alt="Geração de Créditos" class="flow-icon">
+            <p>Produtores sustentáveis geram créditos de carbono a partir de reflorestamento, preservação e energia renovável.</p>
+            <div class="step-number">2</div>
+        </div>
+        <div class="flow-step">
+            <h3>Validação e Disponibilização</h3>
+            <img src="assets/images/medalIcon.png" alt="Validação e Disponibilização" class="flow-icon">
+            <p>Os créditos são validados e disponibilizados no marketplace da CarboZero.</p>
+            <div class="step-number">3</div>
+        </div>
+        <div class="flow-step">
+            <h3>Compra e Compensação</h3>
+            <img src="assets/images/co2Icon.png" alt="Compra e Compensação" class="flow-icon">
+            <p>Usuários compram créditos para compensar suas emissões e promover um futuro sustentável.</p>
+            <div class="step-number">4</div>
+        </div>
+    </div>
 
-    <script src="script/homepage.js"></script>
+    <!-- Seção de Texto Acima do Slider -->
+    <div class="texto-e-slider">
+        <!-- Texto -->
+        <div class="texto-lateral">
+            <h2>Compense suas Emissões de CO₂</h2>
+            <p>Deslize pelos slides e descubra como suas ações podem ajudar a preservar o planeta.</p>
+        </div>
+
+        <!-- Slider -->
+        <div class="slider-container">
+            <div class="blog-slider">
+                <div class="blog-slider__wrp swiper-wrapper">
+
+                    <!-- Slide 1 -->
+                    <div class="blog-slider__item swiper-slide">
+                        <div class="blog-slider__img">
+                            <img src="assets/images/credito.png" alt="Imagem de Reflorestamento">
+                        </div>
+                        <div class="blog-slider__content">
+                            <div class="blog-slider__title">O que é um Crédito de Carbono?</div>
+                            <div class="blog-slider__text">
+                                Representa a remoção de uma tonelada de CO₂ da atmosfera, gerado por projetos sustentáveis. Ele ajuda empresas e pessoas a neutralizarem suas emissões.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2 -->
+                    <div class="blog-slider__item swiper-slide">
+                        <div class="blog-slider__img">
+                            <img src="assets/images/energia-eolica.jpg" alt="Imagem de Energia Renovável">
+                        </div>
+                        <div class="blog-slider__content">
+                            <div class="blog-slider__title">Como são Gerados?</div>
+                            <div class="blog-slider__text">
+                                Créditos de carbono vêm de projetos que capturam ou evitam CO₂, como reflorestamento e energia renovável. Cada crédito é verificado para garantir a compensação.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 3 -->
+                    <div class="blog-slider__item swiper-slide">
+                        <div class="blog-slider__img">
+                            <img src="assets/images/produtor.jpg" alt="Imagem do Mercado de Créditos de Carbono">
+                        </div>
+                        <div class="blog-slider__content">
+                            <div class="blog-slider__title">Por que Comprar?</div>
+                            <div class="blog-slider__text">
+                                Comprar créditos ajuda a compensar emissões inevitáveis, apoiando projetos ambientais e contribuindo para um planeta mais sustentável.
+                            </div>
+                            <a href="mercado.html" class="blog-slider__button">Mercado de Créditos de Carbono</a>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="blog-slider__pagination"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="new-container">
+        <!-- Título e Subtítulo da Seção -->
+        <div class="new-header">
+            <h2>Ferramentas para Reduzir Suas Emissões</h2>
+            <p>Nossas soluções ajudam empresas e indivíduos a medir, reduzir e compensar suas emissões de carbono de maneira prática e segura.</p>
+        </div>
+    
+        <div class="new-cards-wrapper">
+        <!-- Card 1: Calculadora -->
+        <div class="new-card new-calculadora">
+            <div class="new-face new-face1">
+                <div class="new-content">
+                    <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M2 0H14V16H2V0ZM4 2H12V6H4V2ZM5 10C5.55228 10 6 9.55229 6 9C6 8.44771 5.55228 8 5 8C4.44772 8 4 8.44771 4 9C4 9.55229 4.44772 10 5 10ZM6 13C6 13.5523 5.55228 14 5 14C4.44772 14 4 13.5523 4 13C4 12.4477 4.44772 12 5 12C5.55228 12 6 12.4477 6 13ZM8 10C8.55228 10 9 9.55229 9 9C9 8.44771 8.55228 8 8 8C7.44772 8 7 8.44771 7 9C7 9.55229 7.44772 10 8 10ZM12 9C12 9.55229 11.5523 10 11 10C10.4477 10 10 9.55229 10 9C10 8.44771 10.44772 8 11 8C11.5523 8 12 8.44771 12 9ZM8 12C7.44772 12 7 12.4477 7 13C7 13.5523 7 14 8 14H11C11.5523 14 12 13.5523 12 13C12 12.4477 11.5523 12 11 12H8Z"></path>
+                    </svg>
+                    <h3>Calculadora</h3>
+                </div>
+            </div>
+            <div class="new-face new-face2">
+                <div class="new-content">
+                    <p>Calcule suas emissões de carbono de forma fácil e rápida.</p>
+                    <a href="#">Calcule Agora</a>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Card 2: Mercado de Créditos -->
+        <div class="new-card new-mercado">
+            <div class="new-face new-face1">
+                <div class="new-content">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M1.79279 0.725279C1.91545 0.295978 2.30783 0 2.75431 0H21.2457C21.6922 0 22.0846 0.295977 22.2072 0.725279L23.6358 5.72528C23.8183 6.36409 23.3387 7 22.6743 7H20V14H23C23.5523 14 24 14.4477 24 15C24 15.5523 23.5523 16 23 16H22V23C22 23.5523 21.5523 24 21 24H3C2.44772 24 2 23.5523 2 23V16H1C0.447715 16 0 15.5523 0 15C0 14.4477 0.447715 14 1 14H4V7H1.32574C0.661363 7 0.1817 6.3641 0.364219 5.72528L1.79279 0.725279ZM6 7H18V14H6V7ZM8 18C8 17.4477 7.55228 17 7 17C6.44772 17 6 17.4477 6 18V21C6 21.5523 6.44772 22 7 22C7.55228 22 8 21.5523 8 21V18ZM13 18C13 17.4477 12.5523 17 12 17C11.4477 17 11 17.4477 11 18V21C11 21.5523 11.4477 22 12 22C12.5523 22 13 21.5523 13 21V18ZM17 17C17.5523 17 18 17.4477 18 18V21C18 21.5523 17.5523 22 17 22C16.4477 22 16 21.5523 16 21V18C16 17.4477 16.4477 17 17 17Z"></path>
+                    </svg>
+                    <h3>Mercado de Créditos</h3>
+                </div>
+            </div>
+            <div class="new-face new-face2">
+                <div class="new-content">
+                    <p>Compre e venda créditos de carbono com segurança.</p>
+                    <a href="#">Acesse o mercado</a>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Card 3: Área do Vendedor e Comprador -->
+        <div class="new-card new-area">
+            <div class="new-face new-face1">
+                <div class="new-content">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="6" r="4"></circle>
+                        <path d="M20 17.5C20 19.9853 20 22 12 22C4 22 4 19.9853 4 17.5C4 15.0147 7.58172 13 12 13C16.4183 13 20 15.0147 20 17.5Z"></path>
+                    </svg>
+                    <h3>Área do usuário</h3>
+                </div>
+            </div>
+            <div class="new-face new-face2">
+                <div class="new-content">
+                    <p>Gerencie compras, vendas e créditos de carbono. Acompanhe compensações e anúncios em um só lugar.</p>
+                    <a href="#">Minha Área</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="carbozero-footer">
+    <div class="footer-container">
+        <!-- Sobre a CarboZero -->
+        <div class="footer-about">
+            <div class="footer-logo">
+                <img src="assets/images/cbzLogoSemFundo.png" alt="CarboZero Logo"> <!-- Logo como imagem -->
+                <h3><span class="carbo">Carbo</span><span class="zero">zero</span></h3> <!-- Texto da logo -->
+            </div>
+            <p>Nossa missão é ajudar pessoas e empresas a compensarem suas emissões de carbono, contribuindo para um futuro sustentável.</p>
+            
+            <!-- Newsletter (agora movido para baixo do "Sobre a CarboZero") -->
+            <div class="footer-newsletter">
+                <h3>Assine nosso newsletter</h3>
+                <form>
+                    <input type="email" placeholder="Insira seu email" required>
+                    <button type="submit">
+                        <img src="assets/images/seta-direita.png" alt="Seta para Enviar"> <!-- Imagem da seta -->
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Navegação -->
+        <div class="footer-links">
+            <h3>Navegação</h3>
+            <ul>
+                <li><a href="homepage.html">Home</a></li>
+                <li><a href="calculadora.html">Calculadora</a></li>
+                <li><a href="mercado.html">Mercado de Créditos</a></li>
+                <li><a href="sobre.html">Sobre</a></li>
+            </ul>
+        </div>
+
+        <!-- Redes Sociais -->
+        <div class="footer-social">
+            <h3>Redes Sociais</h3>
+            <ul>
+                <li><a href="https://www.instagram.com/p/DBPVP04TYmg/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank"><i class="fab fa-instagram"></i> Instagram</a></li>
+                <li><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+            </ul>
+        </div>
+
+        <!-- Contato -->
+        <div class="footer-contact">
+            <h3>Contato</h3>
+            <p>
+                <img src="assets/images/o-email.png" alt="Ícone de E-mail"> suporte@carbozero.com
+            </p>
+            <p>
+                <img src="assets/images/contact-us.png" alt="Ícone de Telefone"> (47) 98480-2779
+            </p>
+        </div>
+    </div>
+
+    <!-- Footer Inferior -->
+    <div class="footer-bottom">
+        <p>© 2024 CarboZero - Todos os direitos reservados.</p>
+        <a href="termos.html">Terms & Conditions</a>
+    </div>
+</footer>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.5/js/swiper.min.js"></script>
+    <script src="assets/js/header.js"></script>
+    <script src="assets/js/homepage.js"></script>
 </body>
 </html>
