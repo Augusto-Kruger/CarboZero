@@ -1,0 +1,211 @@
+/* Estilos Gerais */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* Header */
+header {
+    background-color: #ffffff;
+    padding: 2px 20px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-bottom: 3px solid #7ebc37;
+    user-select: none;
+}
+
+/* Variáveis para dimensões ajustáveis */
+:root {
+    --logo-width: auto;
+    --logo-height: 110px;
+    --logo-margin-right: 20px;
+    --nav-link-vertical-offset: -2px;
+}
+
+/* Logo */
+header .logo img {
+    width: var(--logo-width);
+    height: var(--logo-height);
+    margin-right: var(--logo-margin-right);
+    margin-top: 5px;
+}
+
+/* Navegação */
+nav {
+    flex-grow: 1;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    align-items: flex-end;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333333;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 5px 0;
+    height: 40px;
+    line-height: 40px;
+    transition: color 0.3s ease;
+    user-select: none;
+    position: relative;
+    top: var(--nav-link-vertical-offset);
+    font-family: 'Poppins', sans-serif;
+}
+
+nav ul li a:hover {
+    color: #4CAF50;
+}
+
+nav ul li:first-child a {
+    color: #287169;
+    font-size: 22px;
+    top: var(--nav-link-vertical-offset);
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Botão de Login */
+.botao-login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #287169;
+    color: #fff;
+    padding: 15px 25px;
+    font-size: 24px;
+    font-weight: bold;
+    border-radius: 15px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    position: relative;
+    top: -10px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.botao-login:hover {
+    background-color: #388E3C;
+}
+
+/* Botão Perfil */
+.perfil-botao {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    background-color: transparent;
+    color: #287169;
+    padding: 15px 30px;
+    font-weight: bold;
+    font-size: 28px;
+    margin-left: auto;
+    position: relative;
+    top: 2px;
+    transition: color 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+}
+
+.perfil-botao span {
+    position: relative;
+    top: 2px;
+}
+
+.perfil-botao img.user-icon {
+    width: 80px;
+    height: 80px;
+    margin-right: 10px;
+    transition: filter 0.3s ease;
+}
+
+.perfil-botao img.seta-icon {
+    width: 20px;
+    height: 18px;
+    margin-left: 10px;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    position: relative;
+    top: 2px;
+}
+
+.perfil-botao.menu-aberto img.seta-icon {
+    transform: rotate(180deg);
+}
+
+.perfil-botao:hover {
+    color: #1b5e50;
+}
+
+.perfil-botao:hover img.user-icon,
+.perfil-botao:hover img.seta-icon {
+    filter: brightness(0.8);
+}
+
+/* Menu Suspenso */
+.menu-suspenso {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    list-style: none;
+    padding: 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    width: 200px;
+    transform: translate(-50%, 0) scale(0.9);
+    transform-origin: top center;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+}
+
+.menu-suspenso.show {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+    pointer-events: auto;
+}
+
+.menu-suspenso li {
+    width: 100%;
+}
+
+.menu-suspenso li:first-child a {
+    border-radius: 8px 8px 0 0;
+    padding-top: 18px;
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+}
+
+.menu-suspenso li a {
+    display: block;
+    width: 100%;
+    padding: 18px 18px;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.menu-suspenso li a:hover {
+    background-color: #287169;
+    color: #fff;
+}
+
+.menu-suspenso li:last-child a {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    overflow: hidden;
+}

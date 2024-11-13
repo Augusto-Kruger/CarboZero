@@ -1,19 +1,35 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const perfilBotao = document.querySelector('.perfil-botao');
-    const menuSuspenso = document.getElementById('dropdown-menu');
-    const seta = document.querySelector('.perfil-botao .seta-icon');
+// Código do swiper da homepage
+var swiper = new Swiper('.blog-slider', {
+    direction: 'vertical', // Define a direção para vertical
+    spaceBetween: 30,
+    effect: 'fade',
+    loop: true,
+    mousewheel: {
+        invert: false, // Permite a navegação com o scroll do mouse
+    },
+    pagination: {
+        el: '.blog-slider__pagination',
+        clickable: true,
+    },
+});
 
-    perfilBotao.addEventListener('click', function () {
-        // Alterna a visibilidade do menu suspenso
-        menuSuspenso.classList.toggle('show');
-        perfilBotao.classList.toggle('menu-aberto'); // Alterna a rotação da seta
+// Adaptar o JavaScript para trabalhar com as novas classes
+document.querySelectorAll('.new-card').forEach(card => {
+    const face1 = card.querySelector('.new-face1');
+    const face2 = card.querySelector('.new-face2');
+
+    // Adiciona a classe 'hover-ativo' quando o mouse entra na face1
+    face1.addEventListener('mouseenter', () => {
+        card.classList.add('hover-ativo');
     });
 
-    // Fechar o menu suspenso se clicar fora dele
-    document.addEventListener('click', function (event) {
-        if (!perfilBotao.contains(event.target) && !menuSuspenso.contains(event.target)) {
-            menuSuspenso.classList.remove('show');
-            perfilBotao.classList.remove('menu-aberto'); // Reseta a rotação da seta
-        }
+    // Mantém a classe 'hover-ativo' quando o mouse entra na face2
+    face2.addEventListener('mouseenter', () => {
+        card.classList.add('hover-ativo');
+    });
+
+    // Remove a classe 'hover-ativo' quando o mouse sai do card
+    card.addEventListener('mouseleave', () => {
+        card.classList.remove('hover-ativo');
     });
 });

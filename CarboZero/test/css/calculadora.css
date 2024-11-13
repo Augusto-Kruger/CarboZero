@@ -1,0 +1,394 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Open+Sans:wght@600&family=Nunito+Sans:wght@400&display=swap');
+
+/* Estilo Geral do Container */
+.container-calculadora {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+    padding: 1.5em;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.conteudo-principal {
+    display: flex;
+    justify-content: space-between;
+    gap: 1.5em;
+    align-items: flex-start;
+}
+
+.coluna-esquerda {
+    flex: 2.3;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+}
+
+.coluna-direita {
+    flex: 1.2;
+    padding-left: 1.5em;
+    box-sizing: border-box;
+    margin-right: 2em;
+}
+
+/* Estilo da Seção "Como Funciona" */
+.secao-como-funciona {
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    padding: 1.5em;
+    font-family: 'Open Sans', sans-serif;
+    width: 100%;
+}
+
+.secao-como-funciona h2 {
+    color: #388e3b;
+    font-size: 2.5rem;
+    font-weight: 800;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: -0.3em;
+}
+
+.secao-como-funciona p {
+    color: #333;
+    font-size: 1.3rem;
+    line-height: 1.4;
+    font-weight: 600;
+    margin-top: 0.3em;
+}
+
+/* Estilo da Seção "Cálculo de Combustível" */
+.secao-calculo-combustivel {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    padding: 0;
+    border-radius: 10px;
+    width: 100%;
+    margin-left: 1.2em;
+}
+
+.parte-titulo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #388e3b;
+    color: #fff;
+    padding: 0.8em 1.5em;
+    border-radius: 10px 10px 0 0;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    gap: 0.5em;
+}
+
+.parte-titulo h3 {
+    margin: 0;
+    line-height: 1;
+}
+
+.icone-titulo {
+    height: 1.4em;
+    width: auto;
+    vertical-align: middle;
+}
+
+/* Conteúdo de Cálculo: Campos, Histórico, e Resultado */
+.conteudo-calculo {
+    display: flex;
+    justify-content: space-between;
+    gap: 1em;
+    padding: 1em;
+}
+
+/* Campos de Entrada e Botões */
+.parte-campos {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1em;
+    border-radius: 10px;
+    border: none;
+}
+
+.parte-campos label {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: -0.4em;
+    margin-top: 0.8em;
+    text-align: left;
+}
+
+/* Estilo para os campos de seleção e input */
+.parte-campos select,
+.parte-campos input {
+    width: 95%;
+    margin-top: 0.8em;
+    padding: 0.8em;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 1.1rem;
+    outline: none;
+    text-align: left;
+}
+
+/* Combobox */
+.parte-campos select {
+    width: 16.1em;
+    font-family: 'Poppins', sans-serif;
+    background-color: #388e3b;
+    color: #fff;
+    border: 4px solid #388e3b;
+    padding-right: 3em;
+    appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns%3D"http%3A//www.w3.org/2000/svg" width%3D"10" height%3D"10" viewBox%3D"0 0 24 24"%3E%3Cpath fill%3D"%23FFFFFF" d%3D"M7 10l5 5 5-5z"/%3E%3C/svg%3E');
+    background-repeat: no-repeat;
+    background-position: right 1em center;
+    background-size: 2em;
+    transition: border-color 0.3s ease;
+    font-size: 0.9em;
+}
+
+.parte-campos select:focus {
+    border-color: #388e3b;
+}
+
+/* Campo de entrada */
+.parte-campos input {
+    width: 14.6em;
+    font-family: Arial, sans-serif;
+    border: 4px solid #388e3b;
+    background-color: #fff;
+    color: #333;
+    font-size: 1rem;
+}
+
+.parte-campos input:focus {
+    border-color: #388e3b;
+}
+
+/* Botão de Cálculo */
+.parte-campos button {
+    font-family: 'Poppins', sans-serif;
+    background-color: #388e3b;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease-in-out;
+    border: none;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    padding: 0.8em 1em;
+    border-radius: 8px;
+    align-self: flex-start;
+    width: auto;
+    margin-top: 0.8em;
+}
+
+.parte-campos button:hover {
+    box-shadow: 0 0 10px rgba(56, 142, 60, 0.5);
+}
+
+/* Histórico de Cálculos */
+.parte-historico {
+    border-radius: 10px;
+    text-align: center;
+    max-width: 320px;
+    margin-top: 0.7em;
+}
+
+.historico-placeholder {
+    max-height: 50px;
+    overflow: hidden;
+    color: #888;
+    font-size: 1rem;
+    font-style: italic;
+    text-align: center;
+    transition: max-height 0.5s ease, padding 0.5s ease, opacity 0.5s ease;
+}
+
+.historico-placeholder.expand {
+    max-height: 200px;
+    padding: 0.5em 1em;
+    opacity: 1;
+}
+
+.historico-itens {
+    padding: 1em;
+    border-radius: 10px;
+    overflow-y: auto;
+    height: 200px;
+    border: 2px dashed #ccc;
+    scrollbar-width: thin;
+    scrollbar-color: #388e3b #f4f4f4;
+    margin-top: -0.7em;
+}
+
+.historico-itens::-webkit-scrollbar {
+    width: 8px;
+}
+
+.historico-itens::-webkit-scrollbar-track {
+    background: #f4f4f4;
+    border-radius: 10px;
+}
+
+.historico-itens::-webkit-scrollbar-thumb {
+    background-color: #388e3b;
+    border-radius: 10px;
+    border: 2px solid #f4f4f4;
+}
+
+.historico-item {
+    display: flex;
+    align-items: center;
+    background-color: #f4f4f4;
+    padding: 0.3em 0.5em;
+    border-radius: 5px;
+    margin-bottom: 0.4em;
+    font-size: 0.9rem;
+    box-sizing: border-box;
+}
+
+.historico-item span {
+    flex: 1;
+    text-align: center;
+}
+
+.historico-item span:first-child {
+    flex: 2;
+    text-align: left;
+}
+
+.historico-item .valor-co2 {
+    flex: 1.5;
+    color: #388e3b;
+    font-weight: bold;
+    text-align: center;
+}
+
+.historico-item .remove-item {
+    flex: 0.5;
+    color: red;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    text-align: right;
+    font-weight: 900;
+}
+
+/* Resultado de Emissões */
+.parte-resultado {
+    text-align: center;
+    padding: 0.5em;
+    border-radius: 10px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.parte-resultado h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.1em;
+    font-weight: bold;
+    line-height: 1.2;
+}
+
+.resultado-icone {
+    width: 70px;
+    margin: 0.5em auto;
+}
+
+.resultado-valor {
+    background-color: #388e3b;
+    color: #fff;
+    padding: 0.3em 1em;
+    border-radius: 8px;
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-top: 0.5em;
+    width: 100px; /* Largura fixa */
+    height: 40px; /* Altura fixa */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+
+
+.resultado-valor.pequeno {
+    font-size: 1.2rem;
+}
+
+.unidade {
+    font-size: 0.9rem;
+    color: #333;
+    margin-top: 0.3em;
+    font-weight: normal;
+}
+
+/* Animação de Aparecimento */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animação de Desaparecimento */
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+}
+
+/* Placeholder Animations */
+.historico-placeholder.expand {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.historico-item.fade-in {
+    animation: fadeIn 0.3s ease forwards;
+}
+
+.historico-item.fade-out {
+    animation: fadeOut 0.3s ease forwards;
+}
+
+.secao-resultados-ampliados {
+    background-color: #f4f4f4;
+    padding: 1.5em;
+    border-radius: 10px;
+    width: 100%;
+}
+
+.card-calculadora {
+    width: 100%;
+    height: 220px;
+    background-image: url('../images/cardCalc.png');
+    background-size: cover;
+    background-position: center 88%;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+.card-calculadora h2 {
+    color: #fff;
+    font-size: 6.5rem;
+    font-weight: bold;
+    text-align: center;
+}
