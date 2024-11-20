@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Open+Sans:wght@600&family=Nunito+Sans:wght@400&display=swap');
 
+/* Garantir box-sizing consistente */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 /* Estilo Geral do Container */
 .container-calculadora {
     display: flex;
@@ -8,6 +15,27 @@
     padding: 1.5em;
     max-width: 100%;
     margin: 0 auto;
+    margin-bottom: 4em;
+}
+
+.card-calculadora {
+    width: 100%;
+    height: 220px;
+    background-image: url('../images/cardCalc.png');
+    background-size: cover;
+    background-position: center 88%;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+.card-calculadora h2 {
+    color: #fff;
+    font-size: 6.5rem;
+    font-weight: bold;
+    text-align: center;
 }
 
 .conteudo-principal {
@@ -15,33 +43,37 @@
     justify-content: space-between;
     gap: 1.5em;
     align-items: flex-start;
+    max-width: 100%;
+    margin: 0 auto;
 }
 
+/* Coluna Esquerda com Proporção de 60% */
 .coluna-esquerda {
-    flex: 2.3;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5em;
+    flex: 0.7;
 }
 
+/* Coluna Direita com Proporção de 40% */
 .coluna-direita {
-    flex: 1.2;
+    flex: 0.4;
     padding-left: 1.5em;
     box-sizing: border-box;
     margin-right: 2em;
 }
 
-/* Estilo da Seção "Como Funciona" */
+/* Seção "Como Funciona" */
 .secao-como-funciona {
     background-color: #f4f4f4;
     border-radius: 10px;
     padding: 1.5em;
     font-family: 'Open Sans', sans-serif;
-    width: 100%;
+    width: calc(100% - 1em);
+    margin: 0 auto;
+    margin-left: -1em;
+    margin-top: -0.6em;
 }
 
 .secao-como-funciona h2 {
-    color: #388e3b;
+    color: #333;
     font-size: 2.5rem;
     font-weight: 800;
     font-family: 'Poppins', sans-serif;
@@ -56,16 +88,22 @@
     margin-top: 0.3em;
 }
 
-/* Estilo da Seção "Cálculo de Combustível" */
-.secao-calculo-combustivel {
+.secao-calculo {
     display: flex;
     flex-direction: column;
     background-color: #ffffff;
-    padding: 0;
+    padding: 0px;
     border-radius: 10px;
     width: 100%;
-    margin-left: 1.2em;
+    max-width: 79em;
+    margin: 0;
+    border: 2px solid #d9d9d9;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
+    
+
+    
+
 
 .parte-titulo {
     display: flex;
@@ -74,7 +112,7 @@
     background-color: #388e3b;
     color: #fff;
     padding: 0.8em 1.5em;
-    border-radius: 10px 10px 0 0;
+    border-radius: 8px 8px 0 0;
     font-family: 'Poppins', sans-serif;
     font-size: 1.5rem;
     font-weight: 600;
@@ -92,22 +130,96 @@
     vertical-align: middle;
 }
 
-/* Conteúdo de Cálculo: Campos, Histórico, e Resultado */
+/* Seção "Opções de Emissão" */
+.opcoes-emissao {
+    text-align: left;
+    padding: 1em;
+    background-color: #fff;
+    border-radius: 8px;
+    margin-bottom: -1em;
+    margin-top: 0.3em;
+}
+
+.opcoes-emissao h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.8em;
+}
+
+.botoes-opcoes {
+    display: flex;
+    justify-content: flex-start;
+    gap: 0.5em;
+    /* Espaço entre os botões */
+}
+
+.opcao {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #388e3b;
+    /* Fundo verde por padrão */
+    padding: 0.5em;
+    /* Redução do padding */
+    border-radius: 6px;
+    border: 2px solid #388e3b;
+    /* Borda combinando com o fundo */
+    cursor: pointer;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+    width: 60px;
+    /* Botão menor */
+    height: 60px;
+    /* Botão menor */
+}
+
+.opcao img {
+    width: 30px;
+    /* Ícone menor */
+    height: 30px;
+}
+
+.opcao p {
+    display: none;
+    /* Esconde o texto abaixo dos ícones */
+}
+
+.opcao:hover {
+    background-color: #2e7d32;
+    /* Verde mais forte no hover */
+    box-shadow: 0 0 8px rgba(56, 142, 60, 0.5);
+}
+
+.opcao.ativo {
+    background-color: #2e7d32;
+    /* Fundo mais forte ao ser selecionado */
+}
+
+.opcao.ativo img {
+    filter: brightness(0) invert(1);
+    /* Inverte as cores do ícone */
+}
+
+/* Conteúdo de Cálculo */
 .conteudo-calculo {
     display: flex;
     justify-content: space-between;
     gap: 1em;
-    padding: 1em;
+    /* Espaço entre as colunas */
+    padding: 1em 2em;
 }
 
-/* Campos de Entrada e Botões */
 .parte-campos {
+    flex: 2;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     padding: 1em;
     border-radius: 10px;
     border: none;
+    margin-right: 1em;
+    /* Espaço entre campos e histórico */
 }
 
 .parte-campos label {
@@ -119,10 +231,9 @@
     text-align: left;
 }
 
-/* Estilo para os campos de seleção e input */
 .parte-campos select,
 .parte-campos input {
-    width: 95%;
+    width: 100%;
     margin-top: 0.8em;
     padding: 0.8em;
     border-radius: 8px;
@@ -130,44 +241,49 @@
     font-size: 1.1rem;
     outline: none;
     text-align: left;
-}
-
-/* Combobox */
-.parte-campos select {
-    width: 16.1em;
-    font-family: 'Poppins', sans-serif;
-    background-color: #388e3b;
-    color: #fff;
-    border: 4px solid #388e3b;
-    padding-right: 3em;
-    appearance: none;
-    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns%3D"http%3A//www.w3.org/2000/svg" width%3D"10" height%3D"10" viewBox%3D"0 0 24 24"%3E%3Cpath fill%3D"%23FFFFFF" d%3D"M7 10l5 5 5-5z"/%3E%3C/svg%3E');
-    background-repeat: no-repeat;
-    background-position: right 1em center;
-    background-size: 2em;
-    transition: border-color 0.3s ease;
-    font-size: 0.9em;
-}
-
-.parte-campos select:focus {
-    border-color: #388e3b;
-}
-
-/* Campo de entrada */
-.parte-campos input {
-    width: 14.6em;
-    font-family: Arial, sans-serif;
     border: 4px solid #388e3b;
     background-color: #fff;
-    color: #333;
-    font-size: 1rem;
 }
 
+/* Adiciona a seta branca a todas as comboboxes */
+.parte-campos select {
+    background-color: #388e3b;
+    color: #fff;
+    padding-right: 3em;
+    appearance: none;
+    -webkit-appearance: none;
+    /* Compatibilidade com navegadores baseados em WebKit */
+    -moz-appearance: none;
+    /* Compatibilidade com Firefox */
+    background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24"><path fill="white" d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 1em center;
+    background-size: 1.3em;
+    transition: border-color 0.3s ease;
+    font-size: 1.1em;
+}
+
+.parte-campos select:focus,
 .parte-campos input:focus {
-    border-color: #388e3b;
+    border-color: #2e7d32;
 }
 
-/* Botão de Cálculo */
+/* Ajuste para as duas comboboxes lado a lado */
+.combobox-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 1em;
+    /* Espaço entre as comboboxes */
+    width: 100%;
+    /* Ocupa toda a linha */
+}
+
+.combobox-group select {
+    width: 48%;
+    /* Cada combobox ocupa metade da largura da linha */
+}
+
+/* Botões */
 .parte-campos button {
     font-family: 'Poppins', sans-serif;
     background-color: #388e3b;
@@ -189,39 +305,50 @@
     box-shadow: 0 0 10px rgba(56, 142, 60, 0.5);
 }
 
+
 /* Histórico de Cálculos */
 .parte-historico {
-    border-radius: 10px;
+    flex: 1;
     text-align: center;
-    max-width: 320px;
-    margin-top: 0.7em;
+    border-radius: 10px;
+    padding: 1em;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: normal;
+    margin-top: 0.5em;
+}
+
+.parte-historico h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.8em;
 }
 
 .historico-placeholder {
-    max-height: 50px;
+    max-height: 200px;
     overflow: hidden;
     color: #888;
     font-size: 1rem;
     font-style: italic;
     text-align: center;
-    transition: max-height 0.5s ease, padding 0.5s ease, opacity 0.5s ease;
-}
-
-.historico-placeholder.expand {
-    max-height: 200px;
-    padding: 0.5em 1em;
-    opacity: 1;
+    width: 100%;
 }
 
 .historico-itens {
     padding: 1em;
     border-radius: 10px;
     overflow-y: auto;
-    height: 200px;
-    border: 2px dashed #ccc;
+    overflow-x: hidden;
+    border: 4px solid #388e3b;
     scrollbar-width: thin;
     scrollbar-color: #388e3b #f4f4f4;
-    margin-top: -0.7em;
+    margin-top: -0.9em;
+    width: 100%;
+    height: 30.3em;
+    background-color: #fff;
 }
 
 .historico-itens::-webkit-scrollbar {
@@ -248,6 +375,7 @@
     margin-bottom: 0.4em;
     font-size: 0.9rem;
     box-sizing: border-box;
+    transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .historico-item span {
@@ -256,19 +384,19 @@
 }
 
 .historico-item span:first-child {
-    flex: 2;
+    flex: 1;
     text-align: left;
 }
 
 .historico-item .valor-co2 {
-    flex: 1.5;
+    flex: 1;
     color: #388e3b;
     font-weight: bold;
     text-align: center;
 }
 
 .historico-item .remove-item {
-    flex: 0.5;
+    flex: 0.1;
     color: red;
     background: none;
     border: none;
@@ -278,84 +406,30 @@
     font-weight: 900;
 }
 
-/* Resultado de Emissões */
-.parte-resultado {
-    text-align: center;
-    padding: 0.5em;
-    border-radius: 10px;
-    font-family: 'Poppins', sans-serif;
-}
 
-.parte-resultado h3 {
-    font-size: 1.2rem;
-    margin-bottom: 0.1em;
-    font-weight: bold;
-    line-height: 1.2;
-}
-
-.resultado-icone {
-    width: 70px;
-    margin: 0.5em auto;
-}
-
-.resultado-valor {
-    background-color: #388e3b;
-    color: #fff;
-    padding: 0.3em 1em;
-    border-radius: 8px;
-    font-size: 1.4rem;
-    font-weight: bold;
-    margin-top: 0.5em;
-    width: 100px; /* Largura fixa */
-    height: 40px; /* Altura fixa */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    overflow: hidden;
-    white-space: nowrap;
-}
-
-
-
-.resultado-valor.pequeno {
-    font-size: 1.2rem;
-}
-
-.unidade {
-    font-size: 0.9rem;
-    color: #333;
-    margin-top: 0.3em;
-    font-weight: normal;
-}
-
-/* Animação de Aparecimento */
+/* Animações */
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(-10px);
+        transform: translateY(10px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
     }
 }
 
-/* Animação de Desaparecimento */
-@keyframes fadeOut {
+@keyframes fadeOutSlideUp {
     from {
         opacity: 1;
         transform: translateY(0);
     }
+
     to {
         opacity: 0;
-        transform: translateY(10px);
+        transform: translateY(-10px);
     }
-}
-
-/* Placeholder Animations */
-.historico-placeholder.expand {
-    animation: fadeIn 0.5s ease forwards;
 }
 
 .historico-item.fade-in {
@@ -363,32 +437,200 @@
 }
 
 .historico-item.fade-out {
-    animation: fadeOut 0.3s ease forwards;
+    animation: fadeOutSlideUp 0.3s ease forwards;
 }
 
-.secao-resultados-ampliados {
+.separador-vertical {
+    width: 2px;
+    background-color: #ccc;
+    margin: 0 0.5em; /* Ajuste as margens para reposicionar o separador */
+    height: auto;
+    align-self: stretch;
+    margin-left: auto; /* Garante que ele se alinhe mais próximo à coluna direita */
+}
+
+
+/* Coluna Direita */
+.coluna-direita {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    padding: 1em;
     background-color: #f4f4f4;
-    padding: 1.5em;
     border-radius: 10px;
     width: 100%;
+    box-sizing: border-box;
 }
 
-.card-calculadora {
-    width: 100%;
-    height: 220px;
-    background-image: url('../images/cardCalc.png');
-    background-size: cover;
-    background-position: center 88%;
-    border-radius: 25px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
-}
-
-.card-calculadora h2 {
-    color: #fff;
-    font-size: 6.5rem;
-    font-weight: bold;
+/* Seção Título */
+.secao-resultados-ampliados {
     text-align: center;
+    margin-bottom: 1em;
+    margin-top: -0.1em;
+}
+
+.secao-resultados-ampliados h2 {
+    color: #333;
+    font-size: 2.5rem;
+    font-weight: 800;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: -0.3em;
+}
+
+.secao-resultados-ampliados p {
+    font-family: 'Open Sans', sans-serif;
+    color: #333;
+    font-size: 1.3rem;
+    line-height: 1.4;
+    font-weight: 600;
+    margin-top: 0.3em;
+}
+
+/* Card de Resultados */
+.card-resultados {
+    background-color: #ffffff;
+    border: 2px solid #d9d9d9; /* Borda mais destacada */
+    border-radius: 15px;
+    padding: 1em 1.5em;
+    text-align: center;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Sombra mais forte */
+    width: 25em;
+    margin: 0 auto;
+}
+
+/* Ícone CO2 */
+.card-resultados .icone-co2 img {
+    width: 16em;
+    height: auto;
+    margin-bottom: -6em;
+}
+
+/* Títulos dos Dados */
+.card-resultados .dados-emissoes h3,
+.card-resultados .dados-creditos h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.4rem;
+    /* Tamanho ligeiramente maior */
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.5em;
+}
+
+/* Valores de CO2 e Créditos */
+.card-resultados .valor-co2,
+.card-resultados .valor-creditos {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #fff;
+    background-color: #388e3b;
+    padding: 0.3em 1em;
+    border-radius: 8px;
+    margin: 0 auto 1em auto;
+    display: inline-block;
+    width: 7em;
+    text-align: center;
+    margin-top: -0.3em;
+}
+
+.dados-creditos {
+    margin-top: -0.8em;
+}
+
+/* Botão Compense Agora */
+.botao-compensar-container {
+    margin-top: 1.5em;
+    /* Espaçamento entre os dados e o botão */
+}
+
+.botao-compensar {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    background-color: #287169;
+    color: #fff;
+    padding: 0.6em 1.5em;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    max-width: 13em;
+    display: block;
+    margin: 0 auto;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+}
+
+
+.botao-compensar:hover {
+    background-color: #21534d;
+    /* Um tom mais escuro */
+    opacity: 0.9;
+    /* Leve transparência no hover */
+}
+
+/* Descrição de Créditos */
+.card-resultados .descricao-creditos {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: #666;
+    margin-top: -1.7em;
+    text-align: center;
+}
+
+
+/* Botões de Ação */
+.botoes-acoes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 2.7em;
+    
+}
+
+.botoes-acoes .texto-explicativo {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #333;
+    margin-bottom: 1em;
+    line-height: 1.4;
+    text-align: center;
+    max-width: 24em;
+    margin-left: auto;
+    margin-right: auto;
+    word-wrap: break-word;
+}
+
+
+.botoes-acoes .botao-salvar {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    background-color: #388e3b;
+    color: #fff;
+    padding: 0.6em 1.5em;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease-in-out;
+    width: 100%;
+    max-width: 13em;
+    display: block;
+    margin: 0 auto;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+}
+
+.botoes-acoes .botao-salvar:hover {
+    background-color: #206824;
+    /* Um tom mais escuro */
+    opacity: 0.9;
+    /* Leve transparência no hover */
+}
+
+/* Efeito de Troca de Cor Suave */
+.pulso {
+    background-color: #f0fff4; /* Leve tom de verde muito claro */
+    transition: background-color 0.4s ease-in-out; /* Suaviza a troca */
 }

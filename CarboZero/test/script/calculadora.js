@@ -1,137 +1,286 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const calcularBtn = document.querySelector(".parte-campos button");
-    const tipoVeiculo = document.getElementById("tipo-veiculo");
-    const kmMes = document.getElementById("km-mes");
-    const resultadoValor = document.getElementById("resultado-valor");
+    const opcoes = document.querySelectorAll(".opcao");
+    const camposCombustivel = document.getElementById("campos-combustivel");
+    const camposEletricidade = document.getElementById("campos-eletricidade");
+    const camposVoos = document.getElementById("campos-voos");
     const historicoContainer = document.querySelector(".historico-itens");
-    let totalEmissao = 0;
+    const botaoCompensar = document.querySelector(".botao-compensar");
+    const botaoSalvar = document.querySelector(".botao-salvar");
+    const valorCO2 = document.querySelector(".valor-co2");
+    const valorCreditos = document.querySelector(".valor-creditos");
 
-    // Formata a emissão para exibição agradável
+    let totalCombustivel = 0;
+    let totalEletricidade = 0;
+    let totalVoos = 0;
+    let tipoAtual = "Combustível"; // Tipo de emissão atualmente selecionado
+
+    function limparCampos(campos) {
+        const inputs = campos.querySelectorAll("input, select");
+        inputs.forEach((input) => {
+            if (input.type === "text") {
+                input.value = "";
+            } else if (input.tagName.toLowerCase() === "select") {
+                input.selectedIndex = 0;
+            }
+        });
+    }
+
+    function limparEntradaAtual(campo) {
+        const input = campo.querySelector("input[type='text']");
+        if (input) input.value = "";
+    }
+
+    function mostrarCampos(camposAtivos) {
+        [camposCombustivel, camposEletricidade, camposVoos].forEach((campo) => {
+            campo.style.display = "none";
+            campo.classList.remove("ativo");
+        });
+        camposAtivos.style.display = "flex";
+        camposAtivos.classList.add("ativo");
+    }
+
     function formatarEmissao(valor) {
-        return valor.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 2 });
+        return Math.max(Math.round(valor), 0).toLocaleString(); // Garante que o valor não seja negativo
     }
 
-    // Atualiza o resultado total no card de resultado
-    function atualizarResultadoTotal() {
-        const valorFormatado = formatarEmissao(totalEmissao);
-        resultadoValor.textContent = valorFormatado;
+    function aplicarTrocaCorSuave(elemento) {
+        elemento.style.transition = "background-color 0.2s ease-in-out";
+        elemento.style.backgroundColor = "#246f36"; // Cor leve para o destaque
+        setTimeout(() => {
+            elemento.style.backgroundColor = ""; // Volta ao padrão
+        }, 400);
+    }
 
-        if (valorFormatado.length > 5) {
-            resultadoValor.parentElement.classList.add("pequeno");
-        } else {
-            resultadoValor.parentElement.classList.remove("pequeno");
+    function atualizarResultadoPorTipo() {
+        let resultadoCampo;
+        let totalPorTipo;
+
+        if (tipoAtual === "Combustível") {
+            resultadoCampo = document.getElementById("resultado-combustivel");
+            totalPorTipo = totalCombustivel;
+        } else if (tipoAtual === "Eletricidade") {
+            resultadoCampo = document.getElementById("resultado-eletricidade");
+            totalPorTipo = totalEletricidade;
+        } else if (tipoAtual === "Voos") {
+            resultadoCampo = document.getElementById("resultado-voos");
+            totalPorTipo = totalVoos;
+        }
+
+        if (resultadoCampo) {
+            resultadoCampo.value = `${formatarEmissao(totalPorTipo)} kg/CO₂`;
+            
         }
     }
 
-    // Atualiza o estilo do histórico para exibir ou ocultar o placeholder
-    function atualizarEstiloHistorico() {
-        const items = historicoContainer.querySelectorAll(".historico-item");
-        const placeholder = historicoContainer.querySelector(".historico-placeholder");
+    function atualizarColunaDireita() {
+        const totalEmissoes = totalCombustivel + totalEletricidade + totalVoos;
 
-        if (items.length === 0) {
-            if (!placeholder) {
-                // Adiciona o placeholder caso não exista
-                const novoPlaceholder = document.createElement("p");
-                novoPlaceholder.className = "historico-placeholder";
-                novoPlaceholder.textContent = "Nenhum cálculo ainda";
-                historicoContainer.appendChild(novoPlaceholder);
-            }
-            totalEmissao = 0;
-            atualizarResultadoTotal();
-        } else {
-            if (placeholder) {
-                placeholder.remove(); // Remove o placeholder ao adicionar o primeiro cálculo
-            }
-        }
+        valorCO2.textContent = formatarEmissao(totalEmissoes);
+        aplicarTrocaCorSuave(valorCO2);
+
+        const creditos = Math.ceil(totalEmissoes / 1000);
+        valorCreditos.textContent = creditos > 0 ? creditos : "0";
+        aplicarTrocaCorSuave(valorCreditos);
+
+        const botaoAtivo = totalEmissoes > 0;
+        botaoCompensar.disabled = !botaoAtivo;
+        botaoSalvar.disabled = !botaoAtivo;
+
+        botaoCompensar.style.opacity = botaoAtivo ? "1" : "0.5";
+        botaoSalvar.style.opacity = botaoAtivo ? "1" : "0.5";
     }
 
-    // Função de cálculo das emissões
-    function calcularEmissao() {
-        const km = parseFloat(kmMes.value);
-        if (isNaN(km) || km <= 0) {
-            alert("Por favor, insira um valor válido de Km/Mês.");
-            return;
-        }
-
-        let fatorEmissao;
-        switch (tipoVeiculo.value) {
-            case "Carro a Gasolina (até 1.4)":
-                fatorEmissao = 0.15;
-                break;
-            case "Carro a Gasolina (1.5 a 2.0)":
-                fatorEmissao = 0.18;
-                break;
-            case "Carro a Gasolina (acima de 2.0)":
-                fatorEmissao = 0.22;
-                break;
-            case "Carro Álcool (até 1.4)":
-                fatorEmissao = 0.13;
-                break;
-            case "Carro Álcool (1.5 a 2.0)":
-                fatorEmissao = 0.16;
-                break;
-            case "Carro Álcool (acima de 2.0)":
-                fatorEmissao = 0.19;
-                break;
-            case "Carro Gás Natural (GNV)":
-                fatorEmissao = 0.12;
-                break;
-            case "Pick-up (diesel)":
-                fatorEmissao = 0.25;
-                break;
-            case "Ônibus":
-                fatorEmissao = 0.3;
-                break;
-            default:
-                fatorEmissao = 0;
-                break;
-        }
-
-        const emissao = km * fatorEmissao;
-        totalEmissao += emissao;
-        atualizarResultadoTotal();
-
-        adicionarAoHistorico(tipoVeiculo.value, km, emissao);
-    }
-
-// Formata a emissão para exibição agradável com uma casa decimal no máximo
-// Formata a emissão para exibição agradável sem casas decimais
-function formatarEmissao(valor) {
-    return Math.round(valor).toLocaleString(); // Arredonda o valor e formata com separador de milhares
-}
-
-
-
-    // Adiciona um item ao histórico
-    function adicionarAoHistorico(tipo, km, emissao) {
+    function atualizarHistorico(tipo, descricao, valor, emissao) {
         const historicoItem = document.createElement("div");
         historicoItem.classList.add("historico-item", "fade-in");
 
         historicoItem.innerHTML = `
             <span>${tipo}</span>
-            <span>${km} Km/mês</span>
-            <span class="valor-co2">${formatarEmissao(emissao)} tCO₂</span>
+            <span>${descricao}</span>
+            <span class="valor-co2">${formatarEmissao(emissao)} kg/CO₂</span>
             <button class="remove-item">X</button>
         `;
 
         historicoItem.querySelector(".remove-item").addEventListener("click", () => {
             historicoItem.classList.remove("fade-in");
             historicoItem.classList.add("fade-out");
-            totalEmissao -= emissao;
-            atualizarResultadoTotal();
 
             historicoItem.addEventListener("animationend", () => {
                 historicoItem.remove();
-                atualizarEstiloHistorico(); // Atualiza o estilo para verificar se o placeholder deve ser exibido
+                if (tipo === "Combustível") {
+                    totalCombustivel -= emissao;
+                } else if (tipo === "Eletricidade") {
+                    totalEletricidade -= emissao;
+                } else if (tipo === "Voos") {
+                    totalVoos -= emissao;
+                }
+                atualizarResultadoPorTipo();
+                atualizarColunaDireita();
+                atualizarEstiloHistorico();
             });
         });
 
         historicoContainer.appendChild(historicoItem);
-        atualizarEstiloHistorico(); // Verifica o placeholder ao adicionar
+        atualizarEstiloHistorico();
     }
 
-    atualizarEstiloHistorico();
+    function atualizarEstiloHistorico() {
+        const items = historicoContainer.querySelectorAll(".historico-item");
+        const placeholder = historicoContainer.querySelector(".historico-placeholder");
 
-    // Adiciona evento ao botão de calcular
-    calcularBtn.addEventListener("click", calcularEmissao);
+        if (items.length === 0) {
+            if (!placeholder) {
+                const novoPlaceholder = document.createElement("p");
+                novoPlaceholder.className = "historico-placeholder";
+                novoPlaceholder.textContent = "Nenhum cálculo ainda";
+                historicoContainer.appendChild(novoPlaceholder);
+            }
+        } else if (placeholder) {
+            placeholder.remove();
+        }
+    }
+
+    function salvarCalculo() {
+        const totalEmissoes = totalCombustivel + totalEletricidade + totalVoos;
+        if (totalEmissoes === 0) {
+            alert("Nenhum cálculo para salvar.");
+            return;
+        }
+
+        const usuarioLogado = JSON.parse(localStorage.getItem("loggedInUser"));
+        if (usuarioLogado) {
+            usuarioLogado.calculoSalvo = totalEmissoes;
+            localStorage.setItem("loggedInUser", JSON.stringify(usuarioLogado));
+            alert("Cálculo salvo com sucesso!");
+        } else {
+            alert("Usuário não autenticado. Por favor, faça login.");
+        }
+
+        totalCombustivel = 0;
+        totalEletricidade = 0;
+        totalVoos = 0;
+
+        historicoContainer.innerHTML = "";
+        atualizarColunaDireita();
+        atualizarEstiloHistorico();
+        atualizarResultadoPorTipo(); // Reseta o resultado por tipo
+    }
+
+    function calcularCombustivel() {
+        const tipoVeiculo = document.getElementById("tipo-veiculo").value;
+        const kmMes = parseFloat(document.getElementById("km-mes").value);
+
+        if (isNaN(kmMes) || kmMes <= 0) {
+            alert("Por favor, insira um valor válido de Km/Mês.");
+            return;
+        }
+
+        const fatoresEmissao = {
+            "Carro a Gasolina (até 1.4)": 0.15,
+            "Carro a Gasolina (1.5 a 2.0)": 0.18,
+            "Carro a Gasolina (acima de 2.0)": 0.22,
+            "Carro Álcool (até 1.4)": 0.13,
+            "Carro Álcool (1.5 a 2.0)": 0.16,
+            "Carro Álcool (acima de 2.0)": 0.19,
+            "Carro Gás Natural (GNV)": 0.12,
+            "Pick-up (diesel)": 0.25,
+            "Ônibus": 0.3,
+        };
+
+        const fatorEmissao = fatoresEmissao[tipoVeiculo] || 0;
+        const emissao = kmMes * fatorEmissao;
+
+        totalCombustivel += emissao;
+        limparEntradaAtual(camposCombustivel);
+        atualizarResultadoPorTipo();
+        atualizarColunaDireita();
+        atualizarHistorico("Combustível", `${tipoVeiculo}, ${kmMes} Km/mês`, kmMes, emissao);
+    }
+
+    function calcularEletricidade() {
+        const regiaoSelect = document.getElementById("regiao");
+        const regiao = regiaoSelect.options[regiaoSelect.selectedIndex].text;
+        const fatorEmissao = parseFloat(regiaoSelect.value);
+        const consumo = parseFloat(document.getElementById("consumo-energia").value);
+
+        if (isNaN(consumo) || consumo <= 0) {
+            alert("Por favor, insira um consumo válido (kWh/Mês).");
+            return;
+        }
+
+        const emissao = consumo * fatorEmissao;
+
+        totalEletricidade += emissao;
+        limparEntradaAtual(camposEletricidade);
+        atualizarResultadoPorTipo();
+        atualizarColunaDireita();
+        atualizarHistorico("Eletricidade", `${regiao}, ${consumo} kWh/mês`, consumo, emissao);
+    }
+
+    function calcularVoos() {
+        const tipoVoo = document.getElementById("tipo-voo").value;
+        const classe = document.getElementById("classe-assento").value;
+        const distancia = parseFloat(document.getElementById("distancia-voo").value);
+
+        if (isNaN(distancia) || distancia <= 0) {
+            alert("Por favor, insira uma distância válida (km).");
+            return;
+        }
+
+        const fatoresEmissao = {
+            domestico: 0.2,
+            "internacional-media": 0.15,
+            "internacional-longa": 0.1,
+        };
+
+        const multiplicadoresClasse = {
+            economica: 1,
+            executiva: 1.5,
+            "primeira-classe": 2,
+        };
+
+        const fatorEmissao = fatoresEmissao[tipoVoo];
+        const multiplicador = multiplicadoresClasse[classe];
+
+        if (!fatorEmissao || !multiplicador) {
+            alert("Erro ao calcular o fator de emissão. Verifique as opções selecionadas.");
+            return;
+        }
+
+        const emissao = distancia * fatorEmissao * multiplicador;
+
+        totalVoos += emissao;
+        limparEntradaAtual(camposVoos);
+        atualizarResultadoPorTipo();
+        atualizarColunaDireita();
+        atualizarHistorico("Voos", `${tipoVoo}, ${classe}, ${distancia} km`, distancia, emissao);
+    }
+
+    document.getElementById("calcular-combustivel").addEventListener("click", calcularCombustivel);
+    document.getElementById("calcular-eletricidade").addEventListener("click", calcularEletricidade);
+    document.getElementById("calcular-voos").addEventListener("click", calcularVoos);
+    botaoSalvar.addEventListener("click", salvarCalculo);
+
+    opcoes.forEach((opcao) => {
+        opcao.addEventListener("click", () => {
+            opcoes.forEach((btn) => btn.classList.remove("ativo"));
+            opcao.classList.add("ativo");
+
+            if (opcao.id === "opcao-combustivel") {
+                tipoAtual = "Combustível";
+                mostrarCampos(camposCombustivel);
+            } else if (opcao.id === "opcao-eletricidade") {
+                tipoAtual = "Eletricidade";
+                mostrarCampos(camposEletricidade);
+            } else if (opcao.id === "opcao-voos") {
+                tipoAtual = "Voos";
+                mostrarCampos(camposVoos);
+            }
+
+            atualizarResultadoPorTipo();
+        });
+    });
+
+    atualizarColunaDireita();
+    atualizarEstiloHistorico();
 });
