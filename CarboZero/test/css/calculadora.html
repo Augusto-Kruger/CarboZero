@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarboZero - Calculadora de CO₂</title>
+    <link rel="icon" type="image/png" href="assets/images/calculateIcon.png">
+    <link rel="stylesheet" href="assets/css/header.css">
+    <link rel="stylesheet" href="assets/css/calculadora.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="assets/images/cbzLogo25601080.png" alt="CarboZero Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="homepage.html">Home</a></li>
+                <li><a href="calculadora.html">Calculadora</a></li>
+                <li><a href="mercado.html">Mercado de Créditos</a></li>
+                <li><a href="sobre.html">Sobre</a></li>
+            </ul>
+        </nav>
+        <button class="botao-login">Fazer login</button>
+        <div class="perfil-botao">
+            <img src="assets/images/userHeader.png" alt="User Icon" class="user-icon">
+            <span>Perfil</span>
+            <img src="assets/images/setaHeader.png" alt="Seta" class="seta-icon">
+        </div>
+        <ul id="dropdown-menu" class="menu-suspenso">
+            <li><a href="#">Meu Perfil</a></li>
+            <li><a href="#">Área do Comprador</a></li>
+            <li><a href="#">Área do Vendedor</a></li>
+            <li><a href="#">Logoff</a></li>
+        </ul>
+    </header>
+
+    <div class="container-calculadora">
+        <div class="card-calculadora">
+            <h2>Calculadora de CO₂</h2>
+        </div>
+
+        <div class="conteudo-principal">
+            <!-- Coluna Esquerda -->
+            <div class="coluna-esquerda">
+                <div class="secao-como-funciona">
+                    <h2>Como funciona?</h2>
+                    <p>A calculadora de emissões ajuda você a estimar suas emissões de CO₂, com base em consumo de
+                        combustível, energia e voos. Após calcular, você pode usar esses dados para adquirir créditos de
+                        carbono no nosso mercado, compensando seu impacto ambiental de forma simples e eficaz.</p>
+                </div>
+
+
+                <div class="secao-calculo">
+                    <div class="parte-titulo">
+                        <h3>Calculadora de Emissões</h3>
+                    </div>
+
+                    <!-- Conteúdo do Cálculo -->
+                    <div class="conteudo-calculo">
+                        <div class="coluna-esquerda">
+                            <!-- Opções de Emissão -->
+                            <div class="opcoes-emissao">
+                                <h3>Escolha o tipo de emissão</h3>
+                                <div class="botoes-opcoes">
+                                    <button id="opcao-combustivel" class="opcao ativo">
+                                        <img src="assets/images/carroCalc.png" alt="Combustível">
+                                        <p>Combustível</p>
+                                    </button>
+                                    <button id="opcao-eletricidade" class="opcao">
+                                        <img src="assets/images/linha-de-energia.png" alt="Eletricidade">
+                                        <p>Eletricidade</p>
+                                    </button>
+                                    <button id="opcao-voos" class="opcao">
+                                        <img src="assets/images/aviaoCalc.png" alt="Voos">
+                                        <p>Voos</p>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Campos de Combustível -->
+                            <div id="campos-combustivel" class="parte-campos ativo">
+                                <label for="tipo-veiculo">Escolha o tipo de veículo</label>
+                                <select id="tipo-veiculo">
+                                    <option>Carro a Gasolina (até 1.4)</option>
+                                    <option>Carro a Gasolina (1.5 a 2.0)</option>
+                                    <option>Carro a Gasolina (acima de 2.0)</option>
+                                    <option>Carro Álcool (até 1.4)</option>
+                                    <option>Carro Álcool (1.5 a 2.0)</option>
+                                    <option>Carro Álcool (acima de 2.0)</option>
+                                    <option>Carro Gás Natural (GNV)</option>
+                                    <option>Pick-up (diesel)</option>
+                                    <option>Ônibus</option>
+                                </select>
+                                <label for="km-mes">Km/Mês</label>
+                                <input type="text" id="km-mes" placeholder="Ex.: 900 Km">
+                                <button id="calcular-combustivel">Calcular</button>
+                                <label for="resultado">Resultado (CO₂/Mês)</label>
+                                <input type="text" id="resultado-combustivel" disabled>
+                            </div>
+
+                            <!-- Campos de Eletricidade -->
+                            <!-- Campos de Eletricidade -->
+                            <div id="campos-eletricidade" class="parte-campos" style="display: none;">
+                                <label for="regiao">Selecione a sua região</label>
+                                <select id="regiao">
+                                    <option value="0.03">Norte</option>
+                                    <option value="0.05">Nordeste</option>
+                                    <option value="0.08">Sudeste e Centro-Oeste</option>
+                                    <option value="0.10">Sul</option>
+                                </select>
+                                <label for="consumo-energia">kWh/Mês</label>
+                                <input type="text" id="consumo-energia" placeholder="Ex.: 200 kWh">
+                                <button id="calcular-eletricidade">Calcular</button>
+                                <label for="resultado-eletricidade">Resultado (CO₂/Mês)</label>
+                                <input type="text" id="resultado-eletricidade" disabled>
+                            </div>
+
+
+                            <!-- Campos de Voos -->
+                            <!-- Campos de Voos -->
+                            <div id="campos-voos" class="parte-campos" style="display: none;">
+                                <label for="tipo-voo">Selecione o tipo de voo</label>
+                                <div class="combobox-group">
+                                    <select id="tipo-voo">
+                                        <option value="domestico">Doméstico</option>
+                                        <option value="internacional-media">Internacional (média distância)</option>
+                                        <option value="internacional-longa">Internacional (longa distância)</option>
+                                    </select>
+
+                                    <select id="classe-assento">
+                                        <option value="economica">Econômica</option>
+                                        <option value="executiva">Executiva</option>
+                                        <option value="primeira-classe">Primeira Classe</option>
+                                    </select>
+                                </div>
+
+                                <label for="distancia-voo">Distância (km)</label>
+                                <input type="text" id="distancia-voo" placeholder="Ex.: 3.000 km">
+
+                                <button id="calcular-voos">Calcular</button>
+                                <label for="resultado-voos">Resultado (CO₂/Mês)</label>
+                                <input type="text" id="resultado-voos" disabled>
+                            </div>
+
+                        </div>
+
+                        <!-- Histórico -->
+                        <div class="parte-historico">
+                            <h3>Histórico de cálculos</h3>
+                            <div class="historico-itens">
+                                <div class="historico-header" style="display: none;">
+                                    <div>Tipo</div>
+                                    <div>Distância/Consumo</div>
+                                    <div>Kg/CO₂</div>
+                                    <div></div>
+                                </div>
+                                <p class="historico-placeholder">Nenhum cálculo ainda</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+            <div class="separador-vertical"></div>
+
+            <!-- Coluna Direita -->
+            <div class="coluna-direita">
+                <!-- Seção de Resultados Ampliados -->
+                <div class="secao-resultados-ampliados">
+                    <h2>Resultados Ampliados</h2>
+                    <p>Os resultados ampliados mostram o total de todas as suas emissões calculadas.</p>
+
+                    <!-- Card de Resultados -->
+<div class="card-resultados">
+    <div class="icone-co2">
+        <img src="assets/images/nuvemCo2Resultado.png" alt="Ícone de CO₂">
+    </div>
+    <div class="dados-emissoes">
+        <h3>Quilos de Carbono (Mês)</h3>
+        <p class="valor-co2">23.000</p>
+        <p class="descricao-creditos">Kg/Co2</p>
+    </div>
+    <div class="dados-creditos">
+        <h3>Créditos necessários</h3>
+        <p class="valor-creditos">23</p>
+        <p class="descricao-creditos">1 crédito = 1000 kg de CO₂</p>
+    </div>
+    <!-- Botão Compense Agora dentro do card -->
+    <div class="botao-compensar-container">
+        <button class="botao-compensar">Compense agora</button>
+    </div>
+</div>
+
+<!-- Texto Explicativo e Botão Salvar -->
+<div class="botoes-acoes">
+    <p class="texto-explicativo">
+        Caso não queira compensar agora, você pode salvar esse cálculo para uma futura compensação.
+        As futuras compensações estão visíveis na área de comprador.
+    </p>
+    <button class="botao-salvar">Salvar cálculo</button>
+</div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="carbozero-footer">
+        <div class="footer-container">
+            <!-- Sobre a CarboZero -->
+            <div class="footer-about">
+                <div class="footer-logo">
+                    <img src="assets/images/cbzLogoSemFundo.png" alt="CarboZero Logo"> <!-- Logo como imagem -->
+                    <h3><span class="carbo">Carbo</span><span class="zero">zero</span></h3> <!-- Texto da logo -->
+                </div>
+                <p>Nossa missão é ajudar pessoas e empresas a compensarem suas emissões de carbono, contribuindo para um futuro sustentável.</p>
+                
+                <!-- Newsletter (agora movido para baixo do "Sobre a CarboZero") -->
+                <div class="footer-newsletter">
+                    <h3>Assine nosso newsletter</h3>
+                    <form>
+                        <input type="email" placeholder="Insira seu email" required>
+                        <button type="submit">
+                            <img src="assets/images/seta-direita.png" alt="Seta para Enviar"> <!-- Imagem da seta -->
+                        </button>
+                    </form>
+                </div>
+            </div>
+    
+            <!-- Navegação -->
+            <div class="footer-links">
+                <h3>Navegação</h3>
+                <ul>
+                    <li><a href="homepage.html">Home</a></li>
+                    <li><a href="calculadora.html">Calculadora</a></li>
+                    <li><a href="mercado.html">Mercado de Créditos</a></li>
+                    <li><a href="sobre.html">Sobre</a></li>
+                </ul>
+            </div>
+    
+            <!-- Redes Sociais -->
+            <div class="footer-social">
+                <h3>Redes Sociais</h3>
+                <ul>
+                    <li><a href="https://www.instagram.com/p/DBPVP04TYmg/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank"><i class="fab fa-instagram"></i> Instagram</a></li>
+                    <li><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                </ul>
+            </div>
+    
+            <!-- Contato -->
+            <div class="footer-contact">
+                <h3>Contato</h3>
+                <p>
+                    <img src="assets/images/o-email.png" alt="Ícone de E-mail"> suporte@carbozero.com
+                </p>
+                <p>
+                    <img src="assets/images/contact-us.png" alt="Ícone de Telefone"> (47) 98480-2779
+                </p>
+            </div>
+        </div>
+    
+        <!-- Footer Inferior -->
+        <div class="footer-bottom">
+            <p>© 2024 CarboZero - Todos os direitos reservados.</p>
+            <a href="termos.html">Terms & Conditions</a>
+        </div>
+    </footer>
+    
+
+    <script src="assets/js/header.js"></script>
+    <script src="assets/js/calculadora.js"></script>
+</body>
+
+</html>
