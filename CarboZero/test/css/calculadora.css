@@ -159,7 +159,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #388e3b;
+    background-color: #333;
     /* Fundo verde por padrão */
     padding: 0.5em;
     /* Redução do padding */
@@ -245,6 +245,7 @@
     background-color: #fff;
 }
 
+
 /* Adiciona a seta branca a todas as comboboxes */
 .parte-campos select {
     background-color: #388e3b;
@@ -282,6 +283,60 @@
     width: 48%;
     /* Cada combobox ocupa metade da largura da linha */
 }
+
+.info-input-calc {
+    width: 1.2em;
+    height: 1.2em;
+    margin-left: 0.1em;
+    border-radius: 50%;
+    background-color: #8a8a8a;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 1.7em;
+}
+
+.info-input-calc:hover {
+    background-color: #388e3b;
+}
+
+#popup-info-input {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 0.5em;
+    font-size: 0.9rem;
+    color: #333;
+    z-index: 1000;
+    max-width: 200px;
+    text-align: center;
+
+    /* Animação inicial */
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+}
+
+#popup-info-input.show {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+}
+
+#popup-info-input.hide {
+    opacity: 0;
+    transform: scale(0.9);
+    pointer-events: none;
+}
+
 
 /* Botões */
 .parte-campos button {
@@ -327,15 +382,74 @@
     margin-bottom: 0.8em;
 }
 
+/* Estilo do popup */
+#popup-info-historico {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 0.5em;
+    font-size: 0.9rem;
+    color: #333;
+    z-index: 1000;
+    max-width: 200px;
+    text-align: center;
+
+    /* Animação inicial */
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+}
+
+#popup-info-historico.show {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+}
+
+#popup-info-historico.hide {
+    opacity: 0;
+    transform: scale(0.9);
+    pointer-events: none;
+}
+
+/* Estilo do botão de ajuda */
+.info-circle-historico {
+    width: 1.2em;
+    height: 1.2em;
+    margin-left: 0.1em;
+    border-radius: 50%;
+    background-color: #878787;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 0.5em; /* Ajuste para alinhamento */
+}
+
+.info-circle-historico:hover {
+    background-color: #388e3b;
+}
+
+
 .historico-placeholder {
     max-height: 200px;
     overflow: hidden;
     color: #888;
     font-size: 1rem;
-    font-style: italic;
+    font-style: normal;
     text-align: center;
     width: 100%;
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
 
 .historico-itens {
     padding: 1em;
@@ -349,6 +463,8 @@
     width: 100%;
     height: 30.3em;
     background-color: #fff;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bolder;
 }
 
 .historico-itens::-webkit-scrollbar {
@@ -578,6 +694,89 @@
     text-align: center;
 }
 
+.dados-creditos {
+    margin-top: -0.8em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.descricao-creditos-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.3em;
+}
+
+.descricao-creditos {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: #666;
+    margin: 0;
+    text-align: center;
+}
+
+/* Ícone do botão de ajuda */
+.info-circle {
+    width: 1.2em;
+    height: 1.2em;
+    margin-left: 0.5em;
+    border-radius: 50%;
+    background-color: #878787;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: -2em; /* Ajustado para alinhar */
+}
+
+.info-circle:hover {
+    background-color: #388e3b;
+}
+
+/* Estilo do popup */
+#popup-info {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 0.5em;
+    font-size: 0.9rem;
+    color: #333;
+    z-index: 1000;
+    max-width: 200px;
+    text-align: center;
+
+    /* Animação inicial */
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+}
+
+#popup-info.show {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+}
+
+#popup-info.hide {
+    opacity: 0;
+    transform: scale(0.9);
+    pointer-events: none;
+}
+
+
+
+
 
 /* Botões de Ação */
 .botoes-acoes {
@@ -634,3 +833,4 @@
     background-color: #f0fff4; /* Leve tom de verde muito claro */
     transition: background-color 0.4s ease-in-out; /* Suaviza a troca */
 }
+

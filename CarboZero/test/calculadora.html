@@ -81,76 +81,87 @@
                                 </div>
                             </div>
 
-                            <!-- Campos de Combustível -->
-                            <div id="campos-combustivel" class="parte-campos ativo">
-                                <label for="tipo-veiculo">Escolha o tipo de veículo</label>
-                                <select id="tipo-veiculo">
-                                    <option>Carro a Gasolina (até 1.4)</option>
-                                    <option>Carro a Gasolina (1.5 a 2.0)</option>
-                                    <option>Carro a Gasolina (acima de 2.0)</option>
-                                    <option>Carro Álcool (até 1.4)</option>
-                                    <option>Carro Álcool (1.5 a 2.0)</option>
-                                    <option>Carro Álcool (acima de 2.0)</option>
-                                    <option>Carro Gás Natural (GNV)</option>
-                                    <option>Pick-up (diesel)</option>
-                                    <option>Ônibus</option>
-                                </select>
-                                <label for="km-mes">Km/Mês</label>
-                                <input type="text" id="km-mes" placeholder="Ex.: 900 Km">
-                                <button id="calcular-combustivel">Calcular</button>
-                                <label for="resultado">Resultado (CO₂/Mês)</label>
-                                <input type="text" id="resultado-combustivel" disabled>
-                            </div>
+                        <!-- Campos de Combustível -->
+<div id="campos-combustivel" class="parte-campos ativo">
+    <label for="tipo-veiculo">Escolha o tipo de veículo</label>
+    <select id="tipo-veiculo">
+        <option>Carro a Gasolina (até 1.4)</option>
+        <option>Carro a Gasolina (1.5 a 2.0)</option>
+        <option>Carro a Gasolina (acima de 2.0)</option>
+        <option>Carro Álcool (até 1.4)</option>
+        <option>Carro Álcool (1.5 a 2.0)</option>
+        <option>Carro Álcool (acima de 2.0)</option>
+        <option>Carro Gás Natural (GNV)</option>
+        <option>Pick-up (diesel)</option>
+        <option>Ônibus</option>
+    </select>
+    <div style="display: flex; align-items: center; gap: 0.5em;">
+        <label for="km-mes">Km/Mês</label>
+        <div class="info-input-calc" data-info="Informe a quilometragem média mensal do veículo.">?</div>
+    </div>
+    <input type="text" id="km-mes" placeholder="Ex.: 900 Km">
+    <button id="calcular-combustivel">Calcular</button>
+    <label for="resultado">Resultado - Combustível</label>
+    <input type="text" id="resultado-combustivel" disabled>
+</div>
 
-                            <!-- Campos de Eletricidade -->
-                            <!-- Campos de Eletricidade -->
-                            <div id="campos-eletricidade" class="parte-campos" style="display: none;">
-                                <label for="regiao">Selecione a sua região</label>
-                                <select id="regiao">
-                                    <option value="0.03">Norte</option>
-                                    <option value="0.05">Nordeste</option>
-                                    <option value="0.08">Sudeste e Centro-Oeste</option>
-                                    <option value="0.10">Sul</option>
-                                </select>
-                                <label for="consumo-energia">kWh/Mês</label>
-                                <input type="text" id="consumo-energia" placeholder="Ex.: 200 kWh">
-                                <button id="calcular-eletricidade">Calcular</button>
-                                <label for="resultado-eletricidade">Resultado (CO₂/Mês)</label>
-                                <input type="text" id="resultado-eletricidade" disabled>
-                            </div>
+<!-- Campos de Eletricidade -->
+<div id="campos-eletricidade" class="parte-campos" style="display: none;">
+    <label for="regiao">Selecione a sua região</label>
+    <select id="regiao">
+        <option value="0.03">Norte</option>
+        <option value="0.05">Nordeste</option>
+        <option value="0.08">Sudeste e Centro-Oeste</option>
+        <option value="0.10">Sul</option>
+    </select>
+    <div style="display: flex; align-items: center; gap: 0.5em;">
+        <label for="consumo-energia">kWh/Mês</label>
+        <div class="info-input-calc" data-info="Informe o consumo mensal médio de energia elétrica em kWh.">?</div>
+    </div>
+    <input type="text" id="consumo-energia" placeholder="Ex.: 200 kWh">
+    <button id="calcular-eletricidade">Calcular</button>
+    <label for="resultado-eletricidade">Resultado - Eletricidade</label>
+    <input type="text" id="resultado-eletricidade" disabled>
+</div>
 
+<!-- Campos de Voos -->
+<div id="campos-voos" class="parte-campos" style="display: none;">
+    <label for="tipo-voo">Selecione o tipo de voo</label>
+    <div class="combobox-group">
+        <select id="tipo-voo">
+            <option value="domestico">Doméstico</option>
+            <option value="internacional-media">Internacional (média distância)</option>
+            <option value="internacional-longa">Internacional (longa distância)</option>
+        </select>
+        <select id="classe-assento">
+            <option value="economica">Econômica</option>
+            <option value="executiva">Executiva</option>
+            <option value="primeira-classe">Primeira Classe</option>
+        </select>
+    </div>
+    <div style="display: flex; align-items: center; gap: 0.5em;">
+        <label for="distancia-voo">Distância (km)</label>
+        <div class="info-input-calc" data-info="Informe a distância média da viagem em quilômetros.">?</div>
+    </div>
+    <input type="text" id="distancia-voo" placeholder="Ex.: 3.000 km">
+    <button id="calcular-voos">Calcular</button>
+    <label for="resultado-voos">Resultado - Voos</label>
+    <input type="text" id="resultado-voos" disabled>
+</div>
 
-                            <!-- Campos de Voos -->
-                            <!-- Campos de Voos -->
-                            <div id="campos-voos" class="parte-campos" style="display: none;">
-                                <label for="tipo-voo">Selecione o tipo de voo</label>
-                                <div class="combobox-group">
-                                    <select id="tipo-voo">
-                                        <option value="domestico">Doméstico</option>
-                                        <option value="internacional-media">Internacional (média distância)</option>
-                                        <option value="internacional-longa">Internacional (longa distância)</option>
-                                    </select>
-
-                                    <select id="classe-assento">
-                                        <option value="economica">Econômica</option>
-                                        <option value="executiva">Executiva</option>
-                                        <option value="primeira-classe">Primeira Classe</option>
-                                    </select>
-                                </div>
-
-                                <label for="distancia-voo">Distância (km)</label>
-                                <input type="text" id="distancia-voo" placeholder="Ex.: 3.000 km">
-
-                                <button id="calcular-voos">Calcular</button>
-                                <label for="resultado-voos">Resultado (CO₂/Mês)</label>
-                                <input type="text" id="resultado-voos" disabled>
-                            </div>
 
                         </div>
 
                         <!-- Histórico -->
                         <div class="parte-historico">
-                            <h3>Histórico de cálculos</h3>
+                            <div style="display: flex; align-items: center; justify-content: center; gap: 0.5em;">
+                                <h3>Histórico geral de cálculos</h3>
+                                <div class="info-circle-historico" id="info-historico">?</div>
+                            </div>
+                            <div id="popup-info-historico">
+                                O histórico geral de cálculos registra todas as emissões inseridas para facilitar o
+                                acompanhamento.
+                            </div>
                             <div class="historico-itens">
                                 <div class="historico-header" style="display: none;">
                                     <div>Tipo</div>
@@ -161,6 +172,7 @@
                                 <p class="historico-placeholder">Nenhum cálculo ainda</p>
                             </div>
                         </div>
+
                     </div>
                 </div>
 
@@ -178,34 +190,42 @@
                     <p>Os resultados ampliados mostram o total de todas as suas emissões calculadas.</p>
 
                     <!-- Card de Resultados -->
-<div class="card-resultados">
-    <div class="icone-co2">
-        <img src="img/nuvemCo2Resultado.png" alt="Ícone de CO₂">
-    </div>
-    <div class="dados-emissoes">
-        <h3>Quilos de Carbono (Mês)</h3>
-        <p class="valor-co2">23.000</p>
-        <p class="descricao-creditos">Kg/Co2</p>
-    </div>
-    <div class="dados-creditos">
-        <h3>Créditos necessários</h3>
-        <p class="valor-creditos">23</p>
-        <p class="descricao-creditos">1 crédito = 1000 kg de CO₂</p>
-    </div>
-    <!-- Botão Compense Agora dentro do card -->
-    <div class="botao-compensar-container">
-        <button class="botao-compensar">Compense agora</button>
-    </div>
-</div>
-
-<!-- Texto Explicativo e Botão Salvar -->
-<div class="botoes-acoes">
-    <p class="texto-explicativo">
-        Caso não queira compensar agora, você pode salvar esse cálculo para uma futura compensação.
-        As futuras compensações estão visíveis na área de comprador.
-    </p>
-    <button class="botao-salvar">Salvar cálculo</button>
-</div>
+                    <div class="card-resultados">
+                        <div class="icone-co2">
+                            <img src="img/nuvemCo2Resultado.png" alt="Ícone de CO₂">
+                        </div>
+                        <div class="dados-emissoes">
+                            <h3>Quilos de Carbono (Mês)</h3>
+                            <p class="valor-co2">23.000</p>
+                            <p class="descricao-creditos">Kg/Co2</p>
+                        </div>
+                        <div class="dados-creditos">
+                            <h3>Créditos necessários</h3>
+                            <p class="valor-creditos">0</p>
+                            <div class="descricao-creditos-container">
+                                <p class="descricao-creditos">1 crédito = 1000 kg de CO₂</p>
+                                <div class="info-circle" id="info-circle-creditos">?</div>
+                            </div>
+                        </div>
+                        <div id="popup-info">
+                            Se você não atingir 1000 kg de CO₂ para um crédito completo, poderá compensar o valor atual
+                            e usar o restante como crédito acumulado para futuras emissões.
+                        </div>
+                    
+                        <!-- Botão Compense Agora dentro do card -->
+                        <div class="botao-compensar-container">
+                            <button class="botao-compensar">Compense agora</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Texto Explicativo e Botão Salvar -->
+                    <div class="botoes-acoes">
+                        <p class="texto-explicativo">
+                            Caso não queira compensar agora, você pode salvar esse cálculo para uma futura compensação.
+                            As futuras compensações estão visíveis na área de comprador.
+                        </p>
+                        <button class="botao-salvar">Salvar cálculo</button>
+                    </div>
 
                 </div>
             </div>
@@ -221,8 +241,9 @@
                     <img src="img/cbzLogoSemFundo.png" alt="CarboZero Logo"> <!-- Logo como imagem -->
                     <h3><span class="carbo">Carbo</span><span class="zero">zero</span></h3> <!-- Texto da logo -->
                 </div>
-                <p>Nossa missão é ajudar pessoas e empresas a compensarem suas emissões de carbono, contribuindo para um futuro sustentável.</p>
-                
+                <p>Nossa missão é ajudar pessoas e empresas a compensarem suas emissões de carbono, contribuindo para um
+                    futuro sustentável.</p>
+
                 <!-- Newsletter (agora movido para baixo do "Sobre a CarboZero") -->
                 <div class="footer-newsletter">
                     <h3>Assine nosso newsletter</h3>
@@ -234,7 +255,7 @@
                     </form>
                 </div>
             </div>
-    
+
             <!-- Navegação -->
             <div class="footer-links">
                 <h3>Navegação</h3>
@@ -245,16 +266,17 @@
                     <li><a href="sobre.html">Sobre</a></li>
                 </ul>
             </div>
-    
+
             <!-- Redes Sociais -->
             <div class="footer-social">
                 <h3>Redes Sociais</h3>
                 <ul>
-                    <li><a href="https://www.instagram.com/p/DBPVP04TYmg/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank"><i class="fab fa-instagram"></i> Instagram</a></li>
+                    <li><a href="https://www.instagram.com/p/DBPVP04TYmg/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+                            target="_blank"><i class="fab fa-instagram"></i> Instagram</a></li>
                     <li><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
                 </ul>
             </div>
-    
+
             <!-- Contato -->
             <div class="footer-contact">
                 <h3>Contato</h3>
@@ -266,17 +288,17 @@
                 </p>
             </div>
         </div>
-    
+
         <!-- Footer Inferior -->
         <div class="footer-bottom">
             <p>© 2024 CarboZero - Todos os direitos reservados.</p>
             <a href="termos.html">Terms & Conditions</a>
         </div>
     </footer>
-    
 
-    <script src="script/header.script"></script>
-    <script src="script/calculadora.script"></script>
+
+    <script src="js/header.js"></script>
+    <script src="js/calculadora.js"></script>
 </body>
 
 </html>

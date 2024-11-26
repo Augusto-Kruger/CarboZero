@@ -284,3 +284,92 @@ document.addEventListener("DOMContentLoaded", () => {
     atualizarColunaDireita();
     atualizarEstiloHistorico();
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    const infoCircle = document.getElementById("info-circle-creditos");
+    const popupInfo = document.getElementById("popup-info");
+
+    function showPopup(popup) {
+        popup.classList.remove("hide");
+        popup.classList.add("show");
+    }
+
+    function hidePopup(popup) {
+        popup.classList.remove("show");
+        popup.classList.add("hide");
+    }
+
+    // Mostrar o popup ao passar o mouse no botão de ajuda
+    infoCircle.addEventListener("mouseover", () => {
+        const rect = infoCircle.getBoundingClientRect();
+        popupInfo.style.left = `${rect.left + window.scrollX + infoCircle.offsetWidth + 10}px`;
+        popupInfo.style.top = `${rect.top + window.scrollY}px`;
+
+        showPopup(popupInfo);
+    });
+
+    // Esconder o popup ao sair do botão de ajuda
+    infoCircle.addEventListener("mouseout", () => {
+        hidePopup(popupInfo);
+    });
+});
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    // Selecionar botão e popup do histórico
+    const infoHistorico = document.getElementById("info-historico");
+    const popupHistorico = document.getElementById("popup-info-historico");
+
+    // Mostrar popup com fade-in
+    infoHistorico.addEventListener("mouseover", () => {
+        const rect = infoHistorico.getBoundingClientRect();
+        popupHistorico.style.top = `${rect.top + window.scrollY - popupHistorico.offsetHeight + 110}px`;
+        popupHistorico.style.left = `${rect.left + window.scrollX + infoHistorico.offsetWidth + 10}px`;
+
+        popupHistorico.classList.remove("hide");
+        popupHistorico.classList.add("show");
+    });
+
+    // Esconder popup com fade-out
+    infoHistorico.addEventListener("mouseout", () => {
+        popupHistorico.classList.remove("show");
+        popupHistorico.classList.add("hide");
+    });
+});
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    // Criar o elemento popup
+    const popupInfo = document.createElement("div");
+    popupInfo.id = "popup-info-input";
+    document.body.appendChild(popupInfo);
+
+    // Selecionar todos os botões de ajuda
+    const infoInputs = document.querySelectorAll(".info-input-calc");
+
+    infoInputs.forEach((infoInput) => {
+        // Mostrar popup ao passar o mouse
+        infoInput.addEventListener("mouseover", (e) => {
+            popupInfo.textContent = infoInput.getAttribute("data-info");
+            const rect = infoInput.getBoundingClientRect();
+            popupInfo.style.left = `${rect.left + window.scrollX + 20}px`;
+            popupInfo.style.top = `${rect.top + window.scrollY}px`;
+
+            popupInfo.classList.remove("hide");
+            popupInfo.classList.add("show");
+        });
+
+        // Esconder popup ao sair do mouse
+        infoInput.addEventListener("mouseout", () => {
+            popupInfo.classList.remove("show");
+            popupInfo.classList.add("hide");
+
+            // Garantir que o popup seja completamente escondido após a animação
+            setTimeout(() => {
+                if (popupInfo.classList.contains("hide")) {
+                    popupInfo.textContent = ""; // Limpa o conteúdo para evitar problemas futuros
+                }
+            }, 300); // Tempo correspondente à animação
+        });
+    });
+});

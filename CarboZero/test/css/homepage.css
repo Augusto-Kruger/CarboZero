@@ -128,7 +128,7 @@ body {
 
 .flow-step h3 {
     font-size: 22px;
-    color: #287169;
+    color: #333;
     margin-bottom: 10px;
     font-family: 'Poppins', sans-serif; /* Fonte para os títulos */
 }
@@ -252,7 +252,8 @@ body {
 
 .texto-lateral h2 {
     font-size: 3em;
-    color: #388E3C;
+    color: #333;
+
     margin-bottom: -15px;
     font-family: 'Poppins', sans-serif; /* Fonte para o título do slider */
 }
@@ -486,7 +487,8 @@ body {
 .new-container .new-header h2 {
     font-family: 'Poppins', sans-serif;
     font-size: 3em;
-    color: #388e3b; /* Verde para destacar */
+    color: #333;
+    /* Verde para destacar */
     margin: 0;
 }
 
